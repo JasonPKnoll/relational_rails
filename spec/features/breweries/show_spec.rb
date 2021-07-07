@@ -5,7 +5,7 @@ RSpec.describe 'the breweries show page' do
 
   end
 
-  it 'displays the name of brewery for the song' do
-    
+  it 'displays the name of brewery for the beer' do
+
   end
 end
