@@ -1,3 +1,3 @@
-class Brewery < ApplicationController
+class Brewery < ApplicationRecord
 
 end

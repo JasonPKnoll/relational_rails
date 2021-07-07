@@ -9,7 +9,8 @@ class BreweriesController < ApplicationController
   def create
     brewery = Brewery.new({
       name: params[:brewery][:name],
-      year_established: params[:brewery][:year_established]
+      year_established: params[:brewery][:year_established],
+      in_colorado: params[:brewery][:in_colorado]
       })
     brewery.save
     redirect_to '/breweries'

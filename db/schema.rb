@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_002655) do
+ActiveRecord::Schema.define(version: 2021_07_07_024436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "breweries", force: :cascade do |t|
     t.string "name"
-    t.string "year_established"
+    t.integer "year_established"
+    t.boolean "in_colorado"
   end
 
 end
