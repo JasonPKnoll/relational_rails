@@ -1,13 +1,16 @@
 <form action="/breweries" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <p>Enter a new brewery:</p>
-  <input type='text' name='brewery[title]'/><br/>
-  <label for='year established'>Year Established (between 1040 and 2021):</label>
-  <input type='number' id='year established' min='1040' max='2021'>
-  <p>Is this brewery located in Colorado?:</p>
-  <input type='radio' id='in state' name='in state boolean' value='true'>
-  <label for='in state'> Yes</label><br>
-  <input type='radio' id='out of state' name='in state boolean' value='false'>
-  <label for='out of state'> No</label><br>
+  <input type='text' name='brewery[name]'/><br/>
+  <p>Enter year established:</p>
+  <input type='text' name='brewery[year_established]'/><br/>
   <input type='submit'/>
 </form>
+
+
+
+<!-- <p>Is this brewery located in Colorado?:</p>
+  <input type='radio' id='in state' name='brewery[in_colorado]' value='true'/>
+  <label for='in state'> Yes</label>
+  <input type='radio' id='out of state' name='brewery[in_colorado]' value='false'/>
+  <label for='out of state'> No</label><br/> -->
