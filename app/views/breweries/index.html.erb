@@ -1,5 +1,7 @@
 <h1>All Breweries</h1>
 
 <% @breweries.each do |brewery| %>
-  <h3><%= brewery %></h3>
+  <h3><a href="/breweries/<%= brewery.id %>"><%= brewery.name %></a></h3>
+  <p>Year established: <%= brewery.year_established %></p>
+  <p>Located in colorado: <%= brewery.in_colorado %></p>
 <% end %>
