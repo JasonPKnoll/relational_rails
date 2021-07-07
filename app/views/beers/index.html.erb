@@ -1,1 +1,8 @@
 <h1>All Beers</h1>
+
+<% @beers.each do |beer| %>
+  <h3><a href="/beers/<%= beer.id %>"><%= beer.name %></a></h3>
+  <p>Style: <%= beer.style %></p>
+  <p>ABV(%): <%= beer.abv %></p>
+  <p>IBU: <%= beer.ibu %></p>
+<% end %>

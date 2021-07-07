@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   delete "/breweries/:id", to: "breweries#destroy"
 
   get "/beers", to: "beers#index"
+  get "/beers/:id", to: "beers#show"
 end
