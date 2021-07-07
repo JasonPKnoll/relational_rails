@@ -1,0 +1,9 @@
+<form action="/artists" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new artist:</p>
+  <p>Name</p>
+  <input type='text' name='artist[name]'/><br/>
+  <p>Description</p>
+  <textarea name='artist[description]'></textarea><br/>
+  <input type='submit'/>
+</form>
