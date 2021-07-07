@@ -2,12 +2,9 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <p>Enter a new brewery:</p>
   <input type="text" name="brewery[name]"/><br/>
+  <p>Location:</p>
+  <input type="text" name="brewery[location]"/><br/>
   <label for="year_established">What year was the brewery established:</label>
   <input type="number" id="year_established" name="brewery[year_established]" min="1040" max="2021"><br/>
-  <p>Is the brewery located in Colorado:</p>
-  <input type="radio" id="in state" name="brewery[in_colorado]" value="true"/>
-  <label for="in state"> Yes</label>
-  <input type="radio" id="out of state" name="brewery[in_colorado]" value="false"/>
-  <label for="out of state"> No</label><br/>
   <input type="submit"/>
 </form>

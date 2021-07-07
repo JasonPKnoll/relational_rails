@@ -9,8 +9,8 @@ class BreweriesController < ApplicationController
   def create
     brewery = Brewery.new({
       name: params[:brewery][:name],
-      year_established: params[:brewery][:year_established],
-      in_colorado: params[:brewery][:in_colorado]
+      location: params[:brewery][:location],
+      year_established: params[:brewery][:year_established]
       })
     brewery.save
     redirect_to "/breweries"
@@ -28,8 +28,8 @@ class BreweriesController < ApplicationController
     brewery = Brewery.find(params[:id])
     brewery.update({
       name: params[:brewery][:name],
-      year_established: params[:brewery][:year_established],
-      in_colorado: params[:brewery][:in_colorado]
+      location: params[:brewery][:location],
+      year_established: params[:brewery][:year_established]
       })
     brewery.save
     redirect_to "/breweries/#{brewery.id}"
