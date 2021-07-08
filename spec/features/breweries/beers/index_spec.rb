@@ -32,5 +32,11 @@ RSpec.describe "Brewery's beers index page" do
     expect(page).to have_content(beer1.name)
     expect(page).to have_content(beer2.name)
     expect(page).to_not have_content(beer3.name)
+    expect(page).to have_content("Style: #{beer1.style}")
+    expect(page).to have_content("Style: #{beer2.style}")
+    expect(page).to have_content("ABV(%): #{beer1.abv}")
+    expect(page).to have_content("ABV(%): #{beer2.abv}")
+    expect(page).to have_content("IBU: #{beer1.ibu}")
+    expect(page).to have_content("IBU: #{beer2.ibu}")
   end
 end

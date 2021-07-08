@@ -1,5 +1,8 @@
 <h1>All beers made by <%= @brewery.name %>:</h1>
 
 <% @brewery.beers.each do |beer| %>
-  <p><%= beer.name %></p>
+  <h3><%= beer.name %></h3>
+  <p>Style: <%= beer.style %></p>
+  <p>ABV(%): <%= beer.abv %></p>
+  <p>IBU: <%= beer.ibu %></p>
 <% end %>
