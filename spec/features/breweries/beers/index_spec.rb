@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "the brewery's beers page" do
+RSpec.describe "Brewery's beers index page" do
   it 'displays the beers associated with that brewery and the beers attributes' do
     brewery1 = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",

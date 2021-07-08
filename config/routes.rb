@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "/breweries", to: "breweries#index"
   get "/breweries/:id", to: "breweries#show"
-  get "/breweries/:id/beers", to: "breweries#beers"
+  get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
 
   # get "/breweries/new", to: "breweries#new"
   # post "/breweries", to: "breweries#create"
