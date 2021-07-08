@@ -47,4 +47,21 @@ RSpec.describe 'the brewery index page' do
     expect("Goldspot Brewing Co").to appear_before("Bells Brewery")
     expect("Bells Brewery").to appear_before("Sierra Nevada Brewing Co")
   end
+
+  it 'displays links to the brewery index and the beer index pages' do
+    brewery = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985
+                            )
+    beer = brewery.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55
+                      )
+
+    visit "/breweries/#{brewery.id}/beers"
+
+    expect(page).to have_content("Brewery Index")
+    expect(page).to have_content("Beer Index")
+  end
 end

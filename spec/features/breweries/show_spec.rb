@@ -34,4 +34,21 @@ RSpec.describe 'the brewery show page' do
 
     expect(page).to have_content("Number of beers: 2")
   end
+
+  it 'displays links to the brewery index and the beer index pages' do
+    brewery = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985
+                            )
+    beer = brewery.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55
+                      )
+
+    visit "/breweries/#{brewery.id}/beers"
+
+    expect(page).to have_content("Brewery Index")
+    expect(page).to have_content("Beer Index")
+  end
 end
