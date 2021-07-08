@@ -2,6 +2,7 @@
 
 <% @breweries.each do |brewery| %>
   <h3><a href="/breweries/<%= brewery.id %>"><%= brewery.name %></a></h3>
+  <p>Record created at: <%= brewery.created_at %></p>
   <p>Location: <%= brewery.location %></p>
   <p>Year established: <%= brewery.year_established %></p>
   <a href="/breweries/<%= brewery.id %>/edit">Edit</a>
