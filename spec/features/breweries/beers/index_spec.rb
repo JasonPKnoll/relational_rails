@@ -26,7 +26,6 @@ RSpec.describe "Brewery's beers index page" do
                         ibu: 50
                       )
     visit "/breweries/#{brewery1.id}/beers"
-    save_and_open_page
 
     expect(page).to have_content("All beers made by #{brewery1.name}:")
     expect(page).to have_content(beer1.name)
@@ -53,7 +52,7 @@ RSpec.describe "Brewery's beers index page" do
 
     visit "/breweries/#{brewery.id}/beers"
 
-    expect(page).to have_content("Brewery Index")
-    expect(page).to have_content("Beer Index")
+    expect(page).to have_link("Brewery Index")
+    expect(page).to have_link("Beer Index")
   end
 end

@@ -7,7 +7,6 @@ RSpec.describe 'the brewery show page' do
                                year_established: 1980,
                              )
     visit "/breweries/#{brewery.id}"
-    save_and_open_page
 
     expect(page).to have_content(brewery.name)
     expect(page).to have_content("Location: #{brewery.location}")
@@ -30,7 +29,6 @@ RSpec.describe 'the brewery show page' do
                         ibu: 0
                       )
     visit "breweries/#{brewery.id}"
-    save_and_open_page
 
     expect(page).to have_content("Number of beers: 2")
   end
@@ -48,7 +46,7 @@ RSpec.describe 'the brewery show page' do
 
     visit "/breweries/#{brewery.id}/beers"
 
-    expect(page).to have_content("Brewery Index")
-    expect(page).to have_content("Beer Index")
+    expect(page).to have_link("Brewery Index")
+    expect(page).to have_link("Beer Index")
   end
 end

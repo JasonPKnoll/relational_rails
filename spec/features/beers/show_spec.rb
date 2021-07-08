@@ -17,7 +17,6 @@ RSpec.describe 'the beers show page' do
                         ibu: 0
                       )
     visit "/beers/#{beer.id}"
-    save_and_open_page
 
     expect(page).to have_content("Beer Index")
     expect(page).to have_content(beer.name)
@@ -44,8 +43,24 @@ RSpec.describe 'the beers show page' do
                         ibu: 0
                       )
     visit "/beers/#{beer.id}"
-    save_and_open_page
 
     expect(page).to have_content("Brewery: #{brewery.name}")
+  end
+
+  it 'displays links to the brewery index and the beer index pages' do
+    brewery = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985
+                            )
+    beer = brewery.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55
+                      )
+
+    visit "/breweries/#{brewery.id}/beers"
+
+    expect(page).to have_link("Brewery Index")
+    expect(page).to have_link("Beer Index")
   end
 end
