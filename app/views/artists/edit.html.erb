@@ -1,0 +1,8 @@
+<form action="/artists/<%= @artist.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit</p>
+  <input type='text' name='artist[name]' value="<%= @artist.name %>"/><br/>
+  <textarea name='artist[description]'><%= @artist.description %></textarea><br/>
+  <input type='submit'/>
+</form>
