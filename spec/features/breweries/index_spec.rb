@@ -57,7 +57,7 @@ RSpec.describe 'the brewery index page' do
                         ibu: 55
                       )
 
-    visit "/breweries/#{brewery.id}/beers"
+    visit "/breweries"
 
     expect(page).to have_link("Brewery Index")
     expect(page).to have_link("Beer Index")
