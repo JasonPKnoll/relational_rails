@@ -22,6 +22,10 @@ RSpec.describe 'the beers show page' do
     expect(page).to have_content("Beer Index")
     expect(page).to have_content(beer.name)
     expect(page).to_not have_content(beer2.name)
+    expect(page).to have_content("Style: #{beer.style}")
+    expect(page).to have_content("ABV(%): #{beer.abv}")
+    expect(page).to have_content("IBU: #{beer.ibu}")
+
   end
 
   it 'displays the name of brewery for the beer' do
@@ -42,6 +46,6 @@ RSpec.describe 'the beers show page' do
     visit "/beers/#{beer.id}"
     save_and_open_page
 
-    expect(page).to have_content(brewery.name)
+    expect(page).to have_content("Brewery: #{brewery.name}")
   end
 end
