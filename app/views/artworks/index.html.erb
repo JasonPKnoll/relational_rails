@@ -1,6 +1,12 @@
-<center><h1>All Artworks</h1></center>
+<h1>All Artworks</h1>
 
 <% @artworks.each do |artwork| %>
-  <center><h3><a href="/artworks/<%= artwork.id %>"<%= artwork.title %></a></h3></center>
-  <center><p><%= artwork.description %></p></center>
+  <h3><a href="/artworks/<%= artwork.id %>"<%= artwork.name %></a></h3>
+  <p><%= artwork.art_type %></p>
+  <a href="/artworks/<%= artwork.id  %>/edit">Edit</a>
+  <form action="/artworks/<%= artwork.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete"/>
+  </form>
 <% end %>
