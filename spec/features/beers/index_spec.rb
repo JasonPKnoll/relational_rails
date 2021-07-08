@@ -2,12 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'the beer index page' do
   it 'displays the beer names, styles, abv, and ibu' do
-    beer1 = Beer.create!(name: "Two Hearted Ale",
+    brewery = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                            )
+    beer1 = brewery.beers.create!(name: "Two Hearted Ale",
                         style: "American IPA",
                         abv: 7.0,
                         ibu: 55
                       )
-    beer2 = Beer.create!(name: "Oberon Ale",
+    beer2 = brewery.beers.create!(name: "Oberon Ale",
                         style: "American Pale Wheat",
                         abv: 5.8,
                         ibu: 0

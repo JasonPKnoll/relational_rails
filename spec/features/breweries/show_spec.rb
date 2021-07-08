@@ -31,5 +31,7 @@ RSpec.describe 'the brewery show page' do
                       )
     visit "breweries/#{brewery.id}"
     save_and_open_page
+
+    expect(page).to have_content("Number of beers: 2")
   end
 end
