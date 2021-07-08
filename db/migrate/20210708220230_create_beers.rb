@@ -5,6 +5,7 @@ class CreateBeers < ActiveRecord::Migration[5.2]
       t.string :style
       t.float :abv
       t.integer :ibu
+      t.boolean :non_alcoholic
 
       t.timestamps
     end
