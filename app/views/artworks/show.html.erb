@@ -1,0 +1,15 @@
+<a href="/artworks">Artwork Index</a>
+
+<h1>Name: <%= @artwork.name %></h1>
+
+<p>Type: <%= @artwork.art_type %></p>
+
+<p>Price: $<%= @artwork.price %></p>
+
+<p>For Sale? = <%= @artwork.for_sale %></p>
+
+<p>Created At: <%= @artwork.created_at %></p>
+
+<p>Updated At: <%= @artwork.updated_at %></p>
+
+<a href="/artworks/<%= @artwork.id %>/edit"><Edit</a>

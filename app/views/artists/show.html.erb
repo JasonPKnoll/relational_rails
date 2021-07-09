@@ -1,0 +1,15 @@
+<a href="/artists">Artist Index</a>
+
+<h1>Name: <%= @artist.name %></h1>
+
+<p>Description: <%= @artist.description %></p>
+
+<p>Years Experience: <%= @artist.years_experience %></p>
+
+<p>Comissions Open? = <%= @artist.comissions_open %></p>
+
+<p>Created At: <%= @artist.created_at %></p>
+
+<p>Updated At: <%= @artist.updated_at %></p>
+
+<a href="/artists/<%= @artist.id %>/edit"><Edit</a>
