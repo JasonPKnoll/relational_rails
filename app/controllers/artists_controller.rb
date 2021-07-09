@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
   def index
-    @artists = Artist.all
+    @artists = Artist.order(created_at: :desc)
   end
 
   def new
@@ -9,7 +9,9 @@ class ArtistsController < ApplicationController
   def create
     artist = Artist.new({
       name: params[:artist][:name],
-      description: params[:artist][:description]
+      description: params[:artist][:description],
+      years_experience: params[:artist][:years_experience],
+      comissions_open: params[:artist][:comissions_open]
       })
 
       artist.save
@@ -25,7 +27,9 @@ class ArtistsController < ApplicationController
       artist = Artist.find(params[:id])
       artist.update({
         name: params[:artist][:name],
-        description: params[:artist][:description]
+        description: params[:artist][:description],
+        years_experience: params[:artist][:years_experience],
+        comissions_open: params[:artist][:comissions_open]
         })
         artist.save
         redirect_to "/artists/#{artist.id}"
