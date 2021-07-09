@@ -37,3 +37,32 @@ ActiveRecord::Schema.define(version: 2021_07_09_203335) do
 
   add_foreign_key "artworks", "artists"
 end
+    
+  ActiveRecord::Schema.define(version: 2021_07_08_222553) do
+    
+    # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+    
+  create_table "beers", force: :cascade do |t|
+    t.string "name"
+    t.string "style"
+    t.float "abv"
+    t.integer "ibu"
+    t.boolean "non_alcoholic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "brewery_id"
+    t.index ["brewery_id"], name: "index_beers_on_brewery_id"
+  end
+
+  create_table "breweries", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.integer "year_established"
+    t.boolean "multiple_brewhouses"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "beers", "breweries"
+end

@@ -1,0 +1,10 @@
+<form action="/breweries/<%= @brewery.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit</p>
+  <input type="text" name="brewery[name]" value="<%= @brewery.name %>"/><br/>
+  <input type="text" name="brewery[location]" value="<%= @brewery.location %>"/><br/>
+  <label for="year_established">What year was the brewery established:</label>
+  <input type="number" id="year_established" name="brewery[year_established]" min="1040" max="2021" value="<%= @brewery.year_established %>"><br/>
+  <input type="submit"/>
+</form>
