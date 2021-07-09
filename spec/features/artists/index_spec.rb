@@ -22,16 +22,12 @@ RSpec.describe 'the artists index page' do
     megan = Artist.create!(name: "Megan", description: "3D artists", years_experience: 2, comissions_open: true)
     srgrafo = Artist.create!(name: "SrGrafo", description: "digital artists", years_experience: 5, comissions_open: false)
     visit "/artists"
-    save_and_open_page
 
     expect(page).to have_content(povi.name)
     expect(page).to have_content(megan.name)
     expect(page).to have_content(srgrafo.name)
-    expect(page).to have_content(povi.created_at)
-    expect(page).to have_content(megan.created_at)
-    expect(page).to have_content(srgrafo.created_at)
 
-    expect("Povi").to appear_before("Megan")
-    expect("Megan").to appear_before("SrGrafo")
+    expect("Megan").to appear_before("Povi")
+    expect("SrGrafo").to appear_before("Megan")
   end
 end
