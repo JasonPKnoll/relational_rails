@@ -1,9 +1,11 @@
 <h1><%= @brewery.name %></h1>
 
-<p>Number of beers: <%= @brewery.beers.beer_count %></p>
-
 <p>Location: <%= @brewery.location %></p>
 
 <p>Year established: <%= @brewery.year_established %></p>
+
+<p>Number of beers: <%= @brewery.beers.beer_count %></p>
+
+<a href="/breweries/<%= @brewery.id %>/beers">Beer List</a>
 
 <a href="/breweries/<%= @brewery.id %>/edit">Edit</a>
