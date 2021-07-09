@@ -17,14 +17,17 @@ Rails.application.routes.draw do
   # ARTWORKS -------------------------
   get '/artworks', to: 'artworks#index'
 
-  get 'artworks/new', to: 'artworks#new'
-  post 'artworks', to: 'artworks#create'
+  get '/artworks/new', to: 'artworks#new'
+  post '/artworks', to: 'artworks#create'
 
   get '/artworks/:id', to: 'artworks#show'
   get '/artworks/:id/edit', to: 'artworks#edit'
   patch '/artworks/:id/', to: 'artworks#udpate'
 
   delete '/artworks/:id', to: 'artworks#destroy'
+
+  # ARTIST_ARTWORKS -------------------------
+  get '/artists/:id/artworks', to: 'artist_artworks#index'
 
   # EASTEREGG -------------------------
   get '/easteregg', to: 'eastereggs#index'
