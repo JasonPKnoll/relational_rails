@@ -13,6 +13,12 @@ RSpec.describe 'the artworks show page' do
     visit "/artworks/#{artwork.id}" #localhost:3000/artwork
 
     expect(page).to have_content(artwork.name)
+    expect(page).to have_content(artwork.art_type)
+    expect(page).to have_content(artwork.price)
+    expect(page).to have_content(artwork.for_sale)
+    expect(page).to have_content(artwork.created_at)
+    expect(page).to have_content(artwork.updated_at)
+
     expect(page).to_not have_content(artwork_2.name)
   end
 end
