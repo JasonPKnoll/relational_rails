@@ -1,6 +1,13 @@
-<center><h1>All Artists</h1></center>
+<h1>All Artists</h1>
 
 <% @artists.each do |artist| %>
-  <center><h3><a href="/artists/<%= artist.id %>"><%= artist.name %></a></h3></center>
-  <center><p><%= artist.description %></p></center>
+  <h3><a href="/artists/<%= artist.id %>"><%= artist.name %></a></h3>
+  <p><%= artist.description %></p>
+  <p><%= artist.created_at %></p>
+  <a href="/artists/<%= artist.id  %>/edit">Edit</a>
+  <form action="/artists/<%= artist.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete"/>
+  </form>
 <% end %>
