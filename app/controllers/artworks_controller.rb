@@ -9,7 +9,9 @@ class ArtworksController < ApplicationController
   def create
     artwork = Artwork.new({
       name: params[:artwork][:name],
-      art_type: params[:artwork][:art_type]
+      art_type: params[:artwork][:art_type],
+      price: params[:artwork][:price],
+      for_sale: params[:artwork][:for_sale]
       })
 
       artwork.save
@@ -25,7 +27,9 @@ class ArtworksController < ApplicationController
     artwork = Artwork.find(params[:id])
     artwork.update({
       name: params[:artwork][:name],
-      art_type: params[:artwork][:art_type]
+      art_type: params[:artwork][:art_type],
+      price: params[:artwork][:price],
+      for_sale: params[:artwork][:for_sale]
       })
       artwork.save
       redirect_to "/artworks/#{artwork.id}"
