@@ -5,25 +5,30 @@ RSpec.describe "Brewery's beers index page" do
     brewery1 = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
+                              multiple_brewhouses: true
                             )
     brewery2 = Brewery.create!(name: "Goldspot Brewing Co",
                               location: "Denver, CO",
                               year_established: 2016,
+                              multiple_brewhouses: false
                             )
     beer1 = brewery1.beers.create!(name: "Two Hearted Ale",
                         style: "American IPA",
                         abv: 7.0,
-                        ibu: 55
+                        ibu: 55,
+                        non_alcoholic: false
                       )
     beer2 = brewery1.beers.create!(name: "Oberon Ale",
                         style: "American Pale Wheat",
                         abv: 5.8,
-                        ibu: 0
+                        ibu: 0,
+                        non_alcoholic: false
                       )
     beer3 = brewery2.beers.create!(name: "Big Gay IPA",
                         style:   "American IPA",
                         abv: 5.0,
-                        ibu: 50
+                        ibu: 50,
+                        non_alcoholic: false
                       )
     visit "/breweries/#{brewery1.id}/beers"
 
@@ -37,6 +42,8 @@ RSpec.describe "Brewery's beers index page" do
     expect(page).to have_content("ABV(%): #{beer2.abv}")
     expect(page).to have_content("IBU: #{beer1.ibu}")
     expect(page).to have_content("IBU: #{beer2.ibu}")
+    expect(page).to have_content("Non Alcoholic: #{beer1.non_alcoholic}")
+    expect(page).to have_content("Non Alcoholic: #{beer2.non_alcoholic}")
   end
 
   it 'displays links to the brewery index and the beer index pages' do

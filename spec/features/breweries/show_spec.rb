@@ -66,8 +66,7 @@ RSpec.describe 'the brewery show page' do
                         ibu: 0
                       )
     visit "breweries/#{brewery.id}"
-    save_and_open_page
 
-    expect(page).to have_link("List of beers for: #{brewery.name}")
+    expect(page).to have_link("Beer List")
   end
 end
