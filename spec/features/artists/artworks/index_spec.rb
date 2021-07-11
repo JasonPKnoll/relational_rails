@@ -41,4 +41,36 @@ RSpec.describe 'Artist artworks index' do
     expect(page).to have_selector(:link, href: "/artists/#{@povi.id}/artworks")
   end
 
+  # Story 13
+  # As a visitor
+  # When I visit a Artists Artworks Index page
+  # Then I see a link to add a new adoptable artwork for that parent "Create Artwork"
+  # When I click the link
+  # I am taken to '/artists/:id/artworks/new' where I see a form to add a new adoptable artwork
+  # When I fill in the form with the artwork's attributes:
+  # And I click the button "Create Artwork"
+  # Then a `POST` request is sent to '/artists/:id/artworks',
+  # a new artwork object/row is created for that parent,
+  # and I am redirected to the Artists Artworks Index page where I can see the new artwork listed
+  it 'can link to new artwork from artists/:id index' do
+    visit "artists/#{@povi.id}"
+
+    click_link "Create Artwork"
+
+    expect(current_path).to eq("artists/#{@povi.id}/new")
+    expect(page).to have_content("Name")
+    expect(page).to have_content("Art Type")
+    expect(page).to have_content("Price")
+    expect(page).to have_content("For Sale?")
+  end
+
+  it 'can create new artwork' do
+    visit "artists/#{@povi.id}/new"
+
+    fill_in "artwork[name]", with: "Povichi V2"
+    click_button "Create Artwork"
+
+    expect(current_path).to eq("artists/#{@povi.id}")
+    expect(page).to have_content("Povichi V2")
+  end
 end
