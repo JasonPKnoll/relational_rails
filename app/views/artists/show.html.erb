@@ -1,6 +1,9 @@
 <a href="/artists">Artist Index</a>
 
+
 <h1>Name: <%= @artist.name %></h1>
+
+<h3><a href="/artists/<%= @artist.id %>/artworks"><%= @artist.name %>'s Artworks</a></h3>
 
 <p>Total works of art for <%= @artist.name %>: <%= @artist.total_number_of_artworks %></p>
 
