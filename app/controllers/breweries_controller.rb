@@ -11,14 +11,13 @@ class BreweriesController < ApplicationController
   end
 
   def create
-    brewery = Brewery.create(
-      name: params[:name],
-      location: params[:location],
-      year_established: params[:year_established],
-      multiple_brewhouses: params[:multiple_brewhouses]
-      )
+    brewery = Brewery.create(brewery_params)
     brewery.save
     redirect_to "/breweries"
+  end
+
+  def brewery_params
+    params.permit(:name, :location, :year_established, :multiple_brewhouses)
   end
 
 
