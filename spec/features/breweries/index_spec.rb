@@ -2,17 +2,15 @@ require 'rails_helper'
 
 RSpec.describe 'the brewery index page' do
   it 'displays the brewery names' do
-# For each parent table
-# As a visitor
-# When I visit '/parents'
-# Then I see the name of each parent record in the system
     brewery1 = Brewery.create!(name: "Sierra Nevada Brewing Co",
                                location: "Chico, CA",
                                year_established: 1980,
+                               multiple_brewhouses: true
                              )
     brewery2 = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
+                              multiple_brewhouses: true
                             )
     visit "/breweries"
 
@@ -24,14 +22,17 @@ RSpec.describe 'the brewery index page' do
     brewery1 = Brewery.create!(name: "Sierra Nevada Brewing Co",
                                location: "Chico, CA",
                                year_established: 1980,
+                               multiple_brewhouses: true
                              )
     brewery2 = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
+                              multiple_brewhouses: true
                              )
     brewery3 = Brewery.create!(name: "Goldspot Brewing Co",
                               location: "Denver, CO",
                               year_established: 2016,
+                              multiple_brewhouses: false
                              )
     visit "/breweries"
 
@@ -46,20 +47,24 @@ RSpec.describe 'the brewery index page' do
     expect("Bells Brewery").to appear_before("Sierra Nevada Brewing Co")
   end
 
-  it 'displays links to the brewery index and the beer index pages' do
+  it 'displays links to all index pages' do
     brewery = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
-                              year_established: 1985
+                              year_established: 1985,
+                              multiple_brewhouses: true
                             )
     beer = brewery.beers.create!(name: "Two Hearted Ale",
                         style: "American IPA",
                         abv: 7.0,
-                        ibu: 55
+                        ibu: 55,
+                        non_alcoholic: false
                       )
 
     visit "/breweries"
 
     expect(page).to have_link("Brewery Index")
     expect(page).to have_link("Beer Index")
+    expect(page).to have_link("Artist Index")
+    expect(page).to have_link("Artwork Index")
   end
 end

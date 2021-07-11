@@ -35,14 +35,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_203335) do
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
   end
 
-  add_foreign_key "artworks", "artists"
-end
-    
-  ActiveRecord::Schema.define(version: 2021_07_08_222553) do
-    
-    # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-    
   create_table "beers", force: :cascade do |t|
     t.string "name"
     t.string "style"
@@ -64,5 +56,6 @@ end
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "artworks", "artists"
   add_foreign_key "beers", "breweries"
 end
