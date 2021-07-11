@@ -32,7 +32,7 @@ RSpec.describe 'the artists index page' do
                             description: "digital artists",
                             years_experience: 5,
                             comissions_open: false)
-                            
+
     visit "/artists"
 
     expect(page).to have_content(povi.name)
@@ -41,5 +41,24 @@ RSpec.describe 'the artists index page' do
 
     expect("Megan").to appear_before("Povi")
     expect("SrGrafo").to appear_before("Megan")
+  end
+
+  it 'displays artists index link on all pages' do
+
+    # => Story 9
+    # => As a visitor
+    # => When I visit any page
+    # => I see a link at the top of the page that takes me to artists index
+    visit "/" # welcome page
+    expect(page).to have_link("Artists Index")
+
+    visit "/artworks"
+    expect(page).to have_link("Artists Index")
+
+    visit "/artists"
+    expect(page).to have_link("Artists Index")
+
+    visit "/easteregg"
+    expect(page).to have_link("Artists Index")
   end
 end
