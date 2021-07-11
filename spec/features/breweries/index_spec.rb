@@ -67,4 +67,21 @@ RSpec.describe 'the brewery index page' do
     expect(page).to have_link("Artist Index")
     expect(page).to have_link("Artwork Index")
   end
+
+  it 'displays link to add a new brewery' do
+    brewery = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+    beer = brewery.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55,
+                        non_alcoholic: false
+                      )
+    visit "/breweries"
+
+    expect(page).to have_link("New Brewery")
+  end
 end

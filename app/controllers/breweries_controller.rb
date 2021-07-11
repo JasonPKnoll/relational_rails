@@ -3,23 +3,24 @@ class BreweriesController < ApplicationController
     @breweries = Brewery.all.order('breweries.created_at DESC')
   end
 
+  def new
+  end
+
   def show
     @brewery = Brewery.find(params[:id])
   end
 
-  # def new
-  # end
+  def create
+    brewery = Brewery.create(
+      name: params[:name],
+      location: params[:location],
+      year_established: params[:year_established],
+      multiple_brewhouses: params[:multiple_brewhouses]
+      )
+    brewery.save
+    redirect_to "/breweries"
+  end
 
-  # def create
-  #   brewery = Brewery.new({
-  #     name: params[:brewery][:name],
-  #     location: params[:brewery][:location],
-  #     year_established: params[:brewery][:year_established]
-  #     })
-  #   brewery.save
-  #   redirect_to "/breweries"
-  # end
-  #
 
   # def edit
   #   @brewery = Brewery.find(params[:id])
