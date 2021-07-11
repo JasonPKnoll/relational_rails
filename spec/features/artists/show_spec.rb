@@ -52,7 +52,6 @@ RSpec.describe 'the artists show page' do
                                       for_sale: true)
 
     visit "/artists/#{povi.id}"
-    save_and_open_page
 
     expect(page).to have_content("Total works of art for Povi: 2")
   end
