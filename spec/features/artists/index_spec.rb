@@ -61,4 +61,42 @@ RSpec.describe 'the artists index page' do
     visit "/easteregg"
     expect(page).to have_link("Artists Index")
   end
+
+  describe 'can create a new artist' do
+    # Story 11
+    # As a visitor
+    # When I visit the ARTIST Index page
+    # Then I see a link to create a new ARTIST record, "New ARTIST"
+    # When I click this link
+    # Then I am taken to '/artists/new' where I  see a form for a new artist record
+    # When I fill out the form with a new artist's attributes:
+    # And I click the button "Create ARTIST" to submit the form
+    # Then a `POST` request is sent to the '/artists' route,
+    # a new artist record is created,
+    # and I am redirected to the ARTIST Index page where I see the new ARTIST displayed.
+
+    it 'can link to new artist from artists index' do
+      visit "/artists"
+
+      click_link "New Artist"
+
+      expect(page).to have_content("Name")
+      expect(page).to have_content("Description")
+      expect(page).to have_content("Years Experience")
+      expect(page).to have_content("Are Comissions Open?")
+    end
+
+    it 'can create a new artist' do
+      visit "/artists/new"
+
+      fill_in "artist[name]", with: "Megan"
+      fill_in "artist[description]", with: "3D avatar creator"
+      click_button "Create Artist"
+      save_and_open_page
+
+
+      expect(current_path).to eq("/artists")
+      expect(page).to have_content("Megan")
+    end
+  end
 end
