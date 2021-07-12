@@ -16,11 +16,9 @@ RSpec.describe 'the artists edit page' do
 
   it 'links to the edit page' do
     artist = Artist.create!(name: 'Megan')
-
     visit '/artists'
 
     click_button "Edit #{artist.name}"
-    save_and_open_page
 
 
     expect(current_path).to eq("/artists/#{artist.id}/edit")

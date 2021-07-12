@@ -53,11 +53,10 @@ RSpec.describe 'Artist artworks index' do
   # a new artwork object/row is created for that parent,
   # and I am redirected to the Artists Artworks Index page where I can see the new artwork listed
   it 'can link to new artwork from artists/:id index' do
-    visit "artists/#{@povi.id}"
-
+    visit "artists/#{@povi.id}/artworks"
     click_link "Create Artwork"
 
-    expect(current_path).to eq("artists/#{@povi.id}/new")
+    expect(current_path).to eq("/artists/#{@povi.id}/artworks/new")
     expect(page).to have_content("Name")
     expect(page).to have_content("Art Type")
     expect(page).to have_content("Price")
@@ -65,9 +64,8 @@ RSpec.describe 'Artist artworks index' do
   end
 
   it 'can create new artwork' do
-    visit "artists/#{@povi.id}/new"
-
-    fill_in "artwork[name]", with: "Povichi V2"
+    visit "artists/#{@povi.id}/artworks/new"
+    fill_in "name", with: "Povichi V2"
     click_button "Create Artwork"
 
     expect(current_path).to eq("artists/#{@povi.id}")

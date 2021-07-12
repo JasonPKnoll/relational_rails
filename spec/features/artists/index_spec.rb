@@ -89,11 +89,9 @@ RSpec.describe 'the artists index page' do
     it 'can create a new artist' do
       visit "/artists/new"
 
-      fill_in "artist[name]", with: "Megan"
-      fill_in "artist[description]", with: "3D avatar creator"
+      fill_in "name", with: "Megan"
+      fill_in "description", with: "3D avatar creator"
       click_button "Create Artist"
-      save_and_open_page
-
 
       expect(current_path).to eq("/artists")
       expect(page).to have_content("Megan")
