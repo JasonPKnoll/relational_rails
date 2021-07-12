@@ -37,8 +37,8 @@ Rails.application.routes.draw do
   get "/breweries/new", to: "breweries#new"
   get "/breweries/:id", to: "breweries#show"
   post "/breweries", to: "breweries#create"
-  # get "/breweries/:id/edit", to: "breweries#edit"
-  # patch "breweries/:id", to: "breweries#update"
+  get "/breweries/:id/edit", to: "breweries#edit"
+  patch "breweries/:id", to: "breweries#update"
   # delete "/breweries/:id", to: "breweries#destroy"
 
   # BEERS -------------------------

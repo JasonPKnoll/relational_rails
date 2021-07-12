@@ -16,29 +16,23 @@ class BreweriesController < ApplicationController
     redirect_to "/breweries"
   end
 
-  def brewery_params
-    params.permit(:name, :location, :year_established, :multiple_brewhouses)
+  def edit
+    @brewery = Brewery.find(params[:id])
   end
 
-
-  # def edit
-  #   @brewery = Brewery.find(params[:id])
-  # end
-  #
-  # def update
-  #   brewery = Brewery.find(params[:id])
-  #   brewery.update({
-  #     name: params[:brewery][:name],
-  #     location: params[:brewery][:location],
-  #     year_established: params[:brewery][:year_established]
-  #     })
-  #   brewery.save
-  #   redirect_to "/breweries/#{brewery.id}"
-  # end
+  def update
+    brewery = Brewery.find(params[:id])
+    brewery.update(brewery_params)
+    brewery.save
+    redirect_to "/breweries/#{brewery.id}"
+  end
   #
   # def destroy
   #   Brewery.destroy(params[:id])
   #   redirect_to "/breweries"
   # end
 
+  def brewery_params
+    params.permit(:name, :location, :year_established, :multiple_brewhouses)
+  end
 end

@@ -5,10 +5,5 @@
 <% @breweries.each do |brewery| %>
   <h3><a href="/breweries/<%= brewery.id %>"><%= brewery.name %></a></h3>
   <p>Record created at: <%= brewery.created_at %></p>
-  <a href="/breweries/<%= brewery.id %>/edit">Edit</a>
-  <form action="/breweries/<%= brewery.id %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="delete"/>
-  </form>
+  <%= link_to "Update #{brewery.name}", "/breweries/#{brewery.id}/edit", method: :get %>
 <% end %>
