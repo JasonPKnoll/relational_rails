@@ -7,16 +7,11 @@ class ArtworksController < ApplicationController
   end
 
   def create
-    artwork = Artwork.new({
-      name: params[:artwork][:name],
-      art_type: params[:artwork][:art_type],
-      price: params[:artwork][:price],
-      for_sale: params[:artwork][:for_sale]
-      })
+    artwork = Artwork.new(artwork_params)
 
       artwork.save
 
-      redirect_to '/artworks'
+      redirect_to "/artists/#{@artist.id}"
   end
 
   def show
@@ -25,18 +20,18 @@ class ArtworksController < ApplicationController
 
   def update
     artwork = Artwork.find(params[:id])
-    artwork.update({
-      name: params[:artwork][:name],
-      art_type: params[:artwork][:art_type],
-      price: params[:artwork][:price],
-      for_sale: params[:artwork][:for_sale]
-      })
-      artwork.save
-      redirect_to "/artworks/#{artwork.id}"
+    artwork.update(artwork_params)
+    artwork.save
+    redirect_to "/artworks/#{artwork.id}"
   end
 
   def destroy
     Artwork.destroy(params[:id])
     redirect_to '/artworks'
+  end
+
+  private
+  def artwork_params
+    params.permit(:name, :art_type, :price, :for_sale)
   end
 end

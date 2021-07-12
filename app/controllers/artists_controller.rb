@@ -7,17 +7,16 @@ class ArtistsController < ApplicationController
   end
 
   def create
-    artist = Artist.create({
-      name: params[:artist][:name],
-      description: params[:artist][:description],
-      years_experience: params[:artist][:years_experience],
-      comissions_open: params[:artist][:comissions_open]
-      })
+    artist = Artist.create(artist_params)
 
     redirect_to "/artists"
   end
 
   def show
+    @artist = Artist.find(params[:id])
+  end
+
+  def edit
     @artist = Artist.find(params[:id])
   end
 
@@ -34,10 +33,8 @@ class ArtistsController < ApplicationController
     redirect_to '/artists'
   end
 
+  private
   def artist_params
-    params.permit(:name,
-                  :description,
-                  :years_experience,
-                  :comissions_open)
+    params.permit(:name, :description, :years_experience, :comissions_open)
   end
 end

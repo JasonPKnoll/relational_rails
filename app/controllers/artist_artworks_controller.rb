@@ -11,13 +11,13 @@ class ArtistArtworksController < ApplicationController
     @artist = Artist.find(params[:id])
     artwork = @artist.artworks.create(artwork_params)
     artwork.save
-    redirect_to "/artists/#{artist.id}"
+    redirect_to "/artists/#{@artist.id}/artworks"
   end
 
   def update
     @artist.artworks.create(artwork_params)
 
-    redirect_to "/artworks/#{artwork.id}"
+    redirect_to "/artworks/#{@artist.id}/artworks"
   end
 
   def destroy
