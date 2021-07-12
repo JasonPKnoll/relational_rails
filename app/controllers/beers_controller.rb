@@ -1,6 +1,6 @@
 class BeersController < ApplicationController
   def index
-    @beers = Beer.all
+    @beers = Beer.all.where(non_alcoholic: true)
   end
 
   def show

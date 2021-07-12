@@ -11,13 +11,13 @@ RSpec.describe 'the beer index page' do
                         style: "American IPA",
                         abv: 7.0,
                         ibu: 55,
-                        non_alcoholic: false
+                        non_alcoholic: true
                       )
     beer2 = brewery.beers.create!(name: "Oberon Ale",
                         style: "American Pale Wheat",
                         abv: 5.8,
                         ibu: 0,
-                        non_alcoholic: false
+                        non_alcoholic: true
                       )
     visit "/beers"
 
@@ -53,5 +53,34 @@ RSpec.describe 'the beer index page' do
     expect(page).to have_link("Beer Index")
     expect(page).to have_link("Artist Index")
     expect(page).to have_link("Artwork Index")
+  end
+
+  it 'only shows true records' do
+    brewery = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+    beer1 = brewery.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55,
+                        non_alcoholic: false
+                      )
+    brewery2 = Brewery.create!(name: "Athletic Brewing Co",
+                              location: "Stratford, CT",
+                              year_established: 2018,
+                              multiple_brewhouses: false
+                            )
+    beer3 = brewery2.beers.create!(name: "Run Wild IPA",
+                        style: "IPA",
+                        abv: 0.4,
+                        ibu: 35,
+                        non_alcoholic: true
+                      )
+    visit "/beers"
+
+    expect(page).to have_content("Run Wild IPA")
+    expect(page).to_not have_content("Two Hearted Ale")
   end
 end
