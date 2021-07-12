@@ -2,10 +2,12 @@
 
 <h1>All beers made by <%= @brewery.name %>:</h1>
 
-<% @brewery.beers.each do |beer| %>
+<% @beers.each do |beer| %>
   <h3><%= beer.name %></h3>
   <p>Style: <%= beer.style %></p>
   <p>ABV(%): <%= beer.abv %></p>
   <p>IBU: <%= beer.ibu %></p>
   <p>Non Alcoholic: <%= beer.non_alcoholic %></p>
 <% end %>
+
+<%= link_to "Sort in alphabetical order", "/breweries/#{@brewery.id}/beers?sort=name" %>

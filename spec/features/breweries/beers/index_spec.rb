@@ -66,4 +66,37 @@ RSpec.describe "Brewery's beers index page" do
     expect(page).to have_link("Artist Index")
     expect(page).to have_link("Artwork Index")
   end
+
+  it 'has a link that sorts page by alphabetical order' do
+    brewery1 = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+    beer1 = brewery1.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55,
+                        non_alcoholic: false
+                      )
+    beer2 = brewery1.beers.create!(name: "Oberon Ale",
+                        style: "American Pale Wheat",
+                        abv: 5.8,
+                        ibu: 0,
+                        non_alcoholic: false
+                      )
+    beer3 = brewery1.beers.create!(name: "Pooltime Ale",
+                        style: "Wheat Beer",
+                        abv: 5.0,
+                        ibu: 0,
+                        non_alcoholic: false
+                      )
+    visit "/breweries/#{brewery1.id}/beers"
+
+    click_link("Sort in alphabetical order")
+
+    expect(current_path).to eq("/breweries/#{brewery1.id}/beers")
+    expect(beer2.name).to appear_before(beer3.name)
+    expect(beer3.name).to appear_before(beer1.name)
+  end
 end
