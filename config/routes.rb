@@ -28,10 +28,10 @@ Rails.application.routes.draw do
   delete '/artworks/:id', to: 'artworks#destroy'
 
   # ARTIST_ARTWORKS -------------------------
-  get '/artists/:id/artworks', to: 'artist_artworks#index'
+  get '/artists/:artist_id/artworks', to: 'artist_artworks#index'
 
-  get '/artists/:id/artworks/new', to: 'artist_artworks#new'
-  post '/artists/:id/artworks', to: 'artist_artworks#create'
+  get '/artists/:artist_id/artworks/new', to: 'artist_artworks#new'
+  post '/artists/:artist_id/artworks', to: 'artist_artworks#create'
 
   # EASTEREGG -------------------------
   get '/easteregg', to: 'eastereggs#index'
