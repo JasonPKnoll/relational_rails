@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   # ARTISTS -------------------------
   get '/artists', to: 'artists#index'
 
+  get '/artists/:id/edit', to: 'artists#edit'
+  patch '/artists/:id', to: 'artists#update'
+
   get '/artists/new', to: 'artists#new'
   post '/artists', to: 'artists#create'
 
   get '/artists/:id', to: 'artists#show'
-  get '/artists/:id/edit', to: 'artists#edit'
-  patch '/artists/:id', to: 'artists#update'
 
   delete '/artists/:id', to: 'artists#destroy'
 
@@ -29,9 +30,11 @@ Rails.application.routes.draw do
   # ARTIST_ARTWORKS -------------------------
   get '/artists/:id/artworks', to: 'artist_artworks#index'
 
+  get '/artists/:id/artworks/new', to: 'artist_artworks#new'
+  post '/artists/:id/artworks', to: 'artist_artworks#create'
+
   # EASTEREGG -------------------------
   get '/easteregg', to: 'eastereggs#index'
-
 
   # BREWERIES -------------------------
   get "/breweries", to: "breweries#index"
