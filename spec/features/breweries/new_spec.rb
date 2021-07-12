@@ -6,6 +6,7 @@ RSpec.describe 'brewery creation page' do
     visit '/breweries'
 
     click_link("New Brewery")
+    
     expect(current_path).to eq('/breweries/new')
   end
 

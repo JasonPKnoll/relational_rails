@@ -1,3 +1,5 @@
+<%= link_to "Create Beer", "/breweries/#{@brewery.id}/beers/new" %>
+
 <h1>All beers made by <%= @brewery.name %>:</h1>
 
 <% @brewery.beers.each do |beer| %>

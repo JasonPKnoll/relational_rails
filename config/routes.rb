@@ -47,4 +47,6 @@ Rails.application.routes.draw do
 
   # BREWERIES_BEERS -------------------------
   get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
+  get "/breweries/:brewery_id/beers/new", to: "brewery_beers#new"
+  post "/breweries/:brewery_id/beers", to: "brewery_beers#create"
 end
