@@ -1,8 +1,20 @@
-<form action="/artists/<%= @artist.id %>" method="post">
+<%= form_with url: "/artists/:id/", method: :post, local: true do |form| %>
+<center><form >
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />
-  <p>Edit</p>
+  <h1>Edit Artist: <%= @artist.name %></h1>
+  <p>Name</p>
   <input type='text' name='artist[name]' value="<%= @artist.name %>"/><br/>
+  <p>Description</p>
   <textarea name='artist[description]'><%= @artist.description %></textarea><br/>
-  <input type='submit'/>
-</form>
+  <p>Years Experience</p>
+  <input type='integer' name='artist[years_experience]' value="<%= @artist.years_experience %>"<br/>
+  <p>Are Comissions Open?</p>
+  <select name='artist[comissions_open]'>
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+  </select><br/>
+  <br/>
+  <%= form.submit "Update Artist"  %>
+  <% end %>
+</form></center>
