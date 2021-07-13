@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get "/beers/:id", to: "beers#show"
   get "/beers/:id/edit", to: "beers#edit"
   patch "/beers/:id", to: "beers#update"
+  delete "/beers/:id", to: "beers#destroy"
 
   # BREWERIES_BEERS -------------------------
   get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
