@@ -23,9 +23,9 @@ RSpec.describe 'brewery edit page' do
 
     visit "/breweries/"
 
-    expect(page).to have_link("Update Sierra Nevada")
+    expect(page).to have_link("Update #{brewery.name}")
 
-    click_link("Update Sierra Nevada")
+    click_link("Update #{brewery.name}")
 
     fill_in('name', with: 'Sierra Nevada Brewing Co')
     fill_in('location', with: 'Chico, CA')
@@ -47,7 +47,7 @@ RSpec.describe 'brewery edit page' do
                                year_established: 198,
                                multiple_brewhouses: false
                              )
-                             
+
     visit "/breweries/#{brewery.id}/edit"
 
     expect(page).to have_link("Brewery Index")

@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   post "/breweries", to: "breweries#create"
   get "/breweries/:id/edit", to: "breweries#edit"
   patch "breweries/:id", to: "breweries#update"
-  # delete "/breweries/:id", to: "breweries#destroy"
+  delete "/breweries/:id", to: "breweries#destroy"
 
   # BEERS -------------------------
   get "/beers", to: "beers#index"
