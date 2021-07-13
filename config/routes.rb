@@ -31,20 +31,24 @@ Rails.application.routes.draw do
 
   # EASTEREGG -------------------------
   get '/easteregg', to: 'eastereggs#index'
-  
-  
+
   # BREWERIES -------------------------
   get "/breweries", to: "breweries#index"
+  get "/breweries/new", to: "breweries#new"
   get "/breweries/:id", to: "breweries#show"
- 
-  get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
-  
-  # get "/breweries/new", to: "breweries#new"
-  # post "/breweries", to: "breweries#create"
-  # get "/breweries/:id/edit", to: "breweries#edit"
-  # patch "breweries/:id", to: "breweries#update"
+  post "/breweries", to: "breweries#create"
+  get "/breweries/:id/edit", to: "breweries#edit"
+  patch "breweries/:id", to: "breweries#update"
   # delete "/breweries/:id", to: "breweries#destroy"
+
   # BEERS -------------------------
   get "/beers", to: "beers#index"
   get "/beers/:id", to: "beers#show"
+  get "/beers/:id/edit", to: "beers#edit"
+  patch "/beers/:id", to: "beers#update"
+
+  # BREWERIES_BEERS -------------------------
+  get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
+  get "/breweries/:brewery_id/beers/new", to: "brewery_beers#new"
+  post "/breweries/:brewery_id/beers", to: "brewery_beers#create"
 end
