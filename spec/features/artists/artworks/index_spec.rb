@@ -68,7 +68,7 @@ RSpec.describe 'Artist artworks index' do
     fill_in "name", with: "Povichi V2"
     click_button "Create Artwork"
 
-    expect(current_path).to eq("artists/#{@povi.id}")
+    expect(current_path).to eq("/artists/#{@povi.id}/artworks")
     expect(page).to have_content("Povichi V2")
   end
 end

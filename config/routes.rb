@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   # ARTISTS -------------------------
   get '/artists', to: 'artists#index'
 
-  get '/artists/:id/edit', to: 'artists#edit'
-  patch '/artists/:id', to: 'artists#update'
-
   get '/artists/new', to: 'artists#new'
   post '/artists', to: 'artists#create'
 
   get '/artists/:id', to: 'artists#show'
+  get '/artists/:id/edit', to: 'artists#edit'
+  patch '/artists/:id/edit', to: 'artists#update'
 
   delete '/artists/:id', to: 'artists#destroy'
 
