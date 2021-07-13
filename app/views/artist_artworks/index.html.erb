@@ -1,3 +1,11 @@
+<h1>Artworks</h1>
+
+<!-- <h3><a href="/artists//artworks/new">Create Artwork</a></h3> -->
+<%= link_to 'Create Artwork', "/artists/#{@artist.id}/artworks/new" %>
+<br>
+<%= link_to 'Sort in Alphabetical Order', "/artists/#{@artist.id}/artworks?sorting" %>
+
 <% @artworks.each do |artwork| %>
   <p><%= artwork.name %></p>
+<a href="/artworks/<%= artwork.id  %>/edit">Edit <%= artwork.name %></a><br><br>
 <% end %>

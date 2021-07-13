@@ -1,0 +1,20 @@
+<center><%= form_with url: "/artists/#{@artist.id}/artworks", method: :post, local: true do |form| %>
+  <h1>Create Artwork:</h1>
+  <%= form.label :name, "Name" %>
+  <br>
+  <%= form.text_field :name %>
+  <br><br>
+  <%= form.label :art_type, "Art Type" %>
+  <br>
+  <%= form.text_area :art_type, size: "50x2" %>
+  <br><br>
+  <%= form.label :price, "Price" %>
+  <br>
+  <%= form.text_field :price, size: "5x1" %>
+  <br><br>
+  <%= form.label :for_sale, "For Sale?" %>
+  <br>
+  <%= form.select :for_sale, [["YES", "TRUE"], ["NO", "FALSE"]] %>
+  <br/><br>
+  <%= form.submit "Create Artwork" %>
+<% end %></center>

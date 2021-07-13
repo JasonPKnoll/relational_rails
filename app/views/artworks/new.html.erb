@@ -1,7 +1,20 @@
+<%= form_with url: "/artworks", method: post, local: true do |form| %>
 <center><form action="/artworks" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <p>Enter a new artwork:</p>
+  <h1>Create a New Artwork:</h1>
+  <p>Name</p>
   <input type='text' name='artwork[name]'/><br/>
+  <p>Art Type</p>
   <textarea name='artwork[art_type]'></textarea><br/>
-  <input type='submit'/>
+  <p>Price</p>
+  <input type='integer' name='artwork[price]'><br/>
+  <p>For Sale?</p>
+  <select name='artwork[for_sale]'>
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+  </select><br/>
+  <br/>
+  <%= form.submit "Create Artwork" %>
+  <!-- <button type='Create Artwork' formethod="create">Create Artwork</button> -->
+  <% end %>
 </form></center>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get '/artists/:id', to: 'artists#show'
   get '/artists/:id/edit', to: 'artists#edit'
-  patch '/artists/:id', to: 'artists#udpate'
+  patch '/artists/:id/edit', to: 'artists#update'
 
   delete '/artists/:id', to: 'artists#destroy'
 
@@ -22,12 +22,15 @@ Rails.application.routes.draw do
 
   get '/artworks/:id', to: 'artworks#show'
   get '/artworks/:id/edit', to: 'artworks#edit'
-  patch '/artworks/:id/', to: 'artworks#udpate'
+  patch '/artworks/:id/edit', to: 'artworks#update'
 
   delete '/artworks/:id', to: 'artworks#destroy'
 
   # ARTIST_ARTWORKS -------------------------
-  get '/artists/:id/artworks', to: 'artist_artworks#index'
+  get '/artists/:artist_id/artworks', to: 'artist_artworks#index'
+
+  get '/artists/:artist_id/artworks/new', to: 'artist_artworks#new'
+  post '/artists/:artist_id/artworks', to: 'artist_artworks#create'
 
   # EASTEREGG -------------------------
   get '/easteregg', to: 'eastereggs#index'

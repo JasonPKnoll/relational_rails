@@ -8,7 +8,7 @@
   <p>Created At: <%= artwork.created_at %></p>
   <p>Updated At: <%= artwork.updated_at %></p>
 
-  <a href="/artworks/<%= artwork.id  %>/edit">Edit</a>
+  <a href="/artworks/<%= artwork.id  %>/edit">Edit <%= artwork.name %></a><br><br>
   <form action="/artworks/<%= artwork.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="DELETE">
