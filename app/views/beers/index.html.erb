@@ -7,4 +7,5 @@
   <p>IBU: <%= beer.ibu %></p>
   <p>Non Alcoholic: <%= beer.non_alcoholic %></p>
   <%= link_to "Update #{beer.name}", "/beers/#{beer.id}/edit" %>
+  <%= link_to "Delete #{beer.name}", "/beers/#{beer.id}", method: :delete %>
 <% end %>

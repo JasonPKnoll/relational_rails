@@ -8,6 +8,7 @@
   <p>ABV(%): <%= beer.abv %></p>
   <p>IBU: <%= beer.ibu %></p>
   <p>Non Alcoholic: <%= beer.non_alcoholic %></p>
+  <%= link_to "Delete #{beer.name}", "/beers/#{beer.id}", method: :delete %>
 <% end %>
 
 <%= link_to "Sort in alphabetical order", "/breweries/#{@brewery.id}/beers?sort=sorted_alphabetically" %>
