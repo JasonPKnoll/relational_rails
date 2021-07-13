@@ -1,6 +1,12 @@
 <%= link_to "Create Beer", "/breweries/#{@brewery.id}/beers/new" %>
 
+
 <h1>All beers made by <%= @brewery.name %>:</h1>
+<%= form_with url: "/breweries/#{@brewery.id}/beers", method: :get, local: true do |form| %>
+  <%= form.label :search_ibus, "Minimum IBU search:" %>
+  <%= form.number_field :search_ibus %>
+  <%= form.submit "Only return records with more than number of ibus" %>
+<% end %>
 
 <% @beers.each do |beer| %>
   <h3><%= beer.name %></h3>

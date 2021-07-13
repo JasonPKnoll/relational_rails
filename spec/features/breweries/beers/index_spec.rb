@@ -94,34 +94,34 @@ RSpec.describe "Brewery's beers index page" do
 
   it 'has a link that sorts page by alphabetical order' do
     #user story 16
-    brewery1 = Brewery.create!(name: "Bells Brewery",
+    brewery = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
                               multiple_brewhouses: true
                             )
-    beer1 = brewery1.beers.create!(name: "Two Hearted Ale",
+    beer1 = brewery.beers.create!(name: "Two Hearted Ale",
                         style: "American IPA",
                         abv: 7.0,
                         ibu: 55,
                         non_alcoholic: false
                       )
-    beer2 = brewery1.beers.create!(name: "Oberon Ale",
+    beer2 = brewery.beers.create!(name: "Oberon Ale",
                         style: "American Pale Wheat",
                         abv: 5.8,
                         ibu: 0,
                         non_alcoholic: false
                       )
-    beer3 = brewery1.beers.create!(name: "Pooltime Ale",
+    beer3 = brewery.beers.create!(name: "Pooltime Ale",
                         style: "Wheat Beer",
                         abv: 5.0,
                         ibu: 0,
                         non_alcoholic: false
                       )
-    visit "/breweries/#{brewery1.id}/beers"
+    visit "/breweries/#{brewery.id}/beers"
 
     click_link("Sort in alphabetical order")
 
-    expect(current_path).to eq("/breweries/#{brewery1.id}/beers")
+    expect(current_path).to eq("/breweries/#{brewery.id}/beers")
     expect(beer2.name).to appear_before(beer3.name)
     expect(beer3.name).to appear_before(beer1.name)
   end
@@ -162,5 +162,49 @@ RSpec.describe "Brewery's beers index page" do
 
     expect(current_path).to eq("/beers")
     expect(page).to_not have_content(beer2.name)
+  end
+
+  it 'has a form to input a number value and when submitted returns records that meet that threshold' do
+  #user story 21
+  brewery = Brewery.create!(name: "Bells Brewery",
+                            location: "Kalamazoo, MI",
+                            year_established: 1985,
+                            multiple_brewhouses: true
+                          )
+  beer1 = brewery.beers.create!(name: "Two Hearted Ale",
+                      style: "American IPA",
+                      abv: 7.0,
+                      ibu: 55,
+                      non_alcoholic: true
+                    )
+  beer2 = brewery.beers.create!(name: "Oberon Ale",
+                      style: "American Pale Wheat",
+                      abv: 5.8,
+                      ibu: 0,
+                      non_alcoholic: false
+                    )
+  beer3 = brewery.beers.create!(name: "Pooltime Ale",
+                      style: "Wheat Beer",
+                      abv: 5.0,
+                      ibu: 0,
+                      non_alcoholic: false
+                    )
+
+  visit "/breweries/#{brewery.id}/beers"
+
+  fill_in('search_ibus', with: 40)
+  click_button("Only return records with more than number of ibus")
+
+  expect(current_path).to eq("/breweries/#{brewery.id}/beers")
+  expect(page).to have_content(beer1.name)
+  expect(page).to_not have_content(beer2.name)
+  expect(page).to_not have_content(beer3.name)
+
+# As a visitor
+# When I visit the Parent's children Index Page
+# I see a form that allows me to input a number value
+# When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+# Then I am brought back to the current index page with only the records that meet that threshold shown.
+
   end
 end
