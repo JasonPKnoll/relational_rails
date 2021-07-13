@@ -1,6 +1,6 @@
 class ArtworksController < ApplicationController
   def index
-    @artworks = Artwork.all
+    @artworks = Artwork.all.where(for_sale: true)
   end
 
   def new
