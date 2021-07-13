@@ -1,8 +1,20 @@
-<form action="/artwork/<%= @artwork.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <p>Edit</p>
-  <input type='text' name='artwork[name]' value="<%= @artwork.name %>"/><br/>
-  <textarea name='artwork[art_type]'><%= @artwork.art_type %></textarea><br/>
-  <input type='submit'/>
-</form>
+<center><%= form_with url: "/artworks/#{@artwork.id}/edit", method: :patch, local: true do |form| %>
+  <h1>Update <%= @artwork.name %>:</h1>
+  <%= form.label :name, "Name" %>
+  <br>
+  <%= form.text_field :name, value: "#{@artwork.name}"  %>
+  <br><br>
+  <%= form.label :art_type, "Art Type" %>
+  <br>
+  <%= form.text_area :art_type, size: "50x5", value: "#{@artwork.art_type}" %>
+  <br><br>
+  <%= form.label :price, "Price" %>
+  <br>
+  <%= form.text_field :price, size: "5x1", value: "#{@artwork.price}" %>
+  <br><br>
+  <%= form.label :for_sale, "For Sale?"%>
+  <br>
+  <%= form.select :for_sale, [["YES", "true"], ["NO", "false"]], selected: "#{@artwork.for_sale}" %>
+  <br/><br>
+  <%= form.submit "Update Artwork" %>
+<% end %></center>
