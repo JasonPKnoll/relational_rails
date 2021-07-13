@@ -39,4 +39,20 @@ RSpec.describe 'brewery edit page' do
     expect(page).to have_content("Year established: 1980")
     expect(page).to have_content("Multiple Brewhouses: true")
   end
+
+  it 'displays links to all index pages' do
+    # user stories 8 and 9
+    brewery = Brewery.create!(name: "Sierra Nevada",
+                               location: "Chico",
+                               year_established: 198,
+                               multiple_brewhouses: false
+                             )
+                             
+    visit "/breweries/#{brewery.id}/edit"
+
+    expect(page).to have_link("Brewery Index")
+    expect(page).to have_link("Beer Index")
+    expect(page).to have_link("Artist Index")
+    expect(page).to have_link("Artwork Index")
+  end
 end

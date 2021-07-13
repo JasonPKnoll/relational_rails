@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Brewery's beers index page" do
   it 'displays the beers associated with that brewery and the beers attributes' do
+    #user story 5
     brewery1 = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
@@ -46,18 +47,13 @@ RSpec.describe "Brewery's beers index page" do
     expect(page).to have_content("Non Alcoholic: #{beer2.non_alcoholic}")
   end
 
-  it 'displays links all index pages' do
+  it 'displays links to all index pages' do
+    # user stories 8 and 9
     brewery = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
                               multiple_brewhouses: true
                             )
-    beer = brewery.beers.create!(name: "Two Hearted Ale",
-                        style: "American IPA",
-                        abv: 7.0,
-                        ibu: 55,
-                        non_alcoholic: false
-                      )
 
     visit "/breweries/#{brewery.id}/beers"
 
@@ -68,6 +64,7 @@ RSpec.describe "Brewery's beers index page" do
   end
 
   it 'has a link that sorts page by alphabetical order' do
+    #user story 16
     brewery1 = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
