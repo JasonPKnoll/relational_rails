@@ -6,4 +6,5 @@
   <h3><a href="/breweries/<%= brewery.id %>"><%= brewery.name %></a></h3>
   <p>Record created at: <%= brewery.created_at %></p>
   <%= link_to "Update #{brewery.name}", "/breweries/#{brewery.id}/edit", method: :get %>
+  <%= link_to "Delete #{brewery.name}", "/breweries/#{brewery.id}", method: :delete %>
 <% end %>
