@@ -1,20 +1,20 @@
-<%= form_with url: "/artists/:id/", method: :post, local: true do |form| %>
-<center><form >
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <h1>Edit Artist: <%= @artist.name %></h1>
-  <p>Name</p>
-  <input type='text' name='artist[name]' value="<%= @artist.name %>"/><br/>
-  <p>Description</p>
-  <textarea name='artist[description]'><%= @artist.description %></textarea><br/>
-  <p>Years Experience</p>
-  <input type='integer' name='artist[years_experience]' value="<%= @artist.years_experience %>"<br/>
-  <p>Are Comissions Open?</p>
-  <select name='artist[comissions_open]'>
-    <option value="true">Yes</option>
-    <option value="false">No</option>
-  </select><br/>
-  <br/>
-  <%= form.submit "Update Artist"  %>
-  <% end %>
-</form></center>
+<center><%= form_with url: "/artists/#{@artist.id}/edit", method: :patch, local: true do |form| %>
+  <h1>Update <%= @artist.name %>:</h1>
+  <%= form.label :name, "Name" %>
+  <br>
+  <%= form.text_field :name, value: "#{@artist.name}"  %>
+  <br><br>
+  <%= form.label :description, "Description" %>
+  <br>
+  <%= form.text_area :description, size: "50x5", value: "#{@artist.description}" %>
+  <br><br>
+  <%= form.label :years_experience, "Years Experience" %>
+  <br>
+  <%= form.text_field :years_experience, size: "5x1", value: "#{@artist.years_experience}" %>
+  <br><br>
+  <%= form.label :comissions_open, "Are Comissions Open?"%>
+  <br>
+  <%= form.select :comissions_open, [["YES", "true"], ["NO", "false"]], selected: "#{@artist.comissions_open}" %>
+  <br/><br>
+  <%= form.submit "Update Artist" %>
+<% end %></center>
