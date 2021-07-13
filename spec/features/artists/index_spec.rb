@@ -97,4 +97,33 @@ RSpec.describe 'the artists index page' do
       expect(page).to have_content("Megan")
     end
   end
+
+  it 'can update artists from index page' do
+    # User Story 17, Artist Update From Artist Index Page (x2)
+    # As a visitor
+    # When I visit the artist index page
+    # Next to every artist, I see a link to edit that artist's info
+    # When I click the link
+    # I should be taken to that artists edit page where I can update its information just like in User Story 4
+
+    megan = Artist.create!(name: "Meg",
+                          description: "3D artists",
+                          years_experience: 2,
+                          comissions_open: true)
+
+    srgrafo = Artist.create!(name: "SrGrafo",
+                            description: "digital artists",
+                            years_experience: 5,
+                            comissions_open: false)
+
+    visit "/artists/"
+    save_and_open_page
+    click_link "Edit Meg"
+
+    fill_in "name", with: "Megan"
+    click_button "Update Artist"
+
+    expect(current_path).to eq("/artists/#{megan.id}")
+    expect(page).to have_content("Megan")
+  end
 end

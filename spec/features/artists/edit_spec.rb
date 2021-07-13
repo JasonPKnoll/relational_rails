@@ -30,7 +30,7 @@ RSpec.describe 'the artists edit page' do
 
     expect(page).to have_content("Meg")
 
-    click_button "Edit Meg"
+    click_link "Edit Meg"
 
     visit "/artists/#{artist.id}/edit"
 
