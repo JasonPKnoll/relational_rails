@@ -117,7 +117,6 @@ RSpec.describe 'the artists index page' do
                             comissions_open: false)
 
     visit "/artists/"
-    save_and_open_page
     click_link "Edit Meg"
 
     fill_in "name", with: "Megan"
