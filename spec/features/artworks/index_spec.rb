@@ -46,4 +46,29 @@ RSpec.describe 'the artworks index page' do
     expect(page).to have_link("Artworks Index")
   end
 
+  it 'only shows records where for sale is true' do
+    # User Story 15, Child Index only shows `true` Records (x2)
+    # As a visitor
+    # When I visit the artworks index
+    # Then I only see records where the boolean column is `true`
+
+    povi = Artist.create!(name: "Povi",
+                          description: "From scratch avatar creator",
+                          years_experience: 10,
+                          comissions_open: false)
+
+    artwork = povi.artworks.create!(name: "Povichi V2",
+                                    art_type: "3D Base Model",
+                                    price: 35,
+                                    for_sale: true)
+
+    artwork_2 = povi.artworks.create!(name: "Kemonomimi V2",
+                                      art_type: "3D Base Model",
+                                      price: 50,
+                                      for_sale: false)
+
+    visit "/artworks/"
+
+    expect(page).to_not have_content("Kemonomimi V2")
+  end
 end
