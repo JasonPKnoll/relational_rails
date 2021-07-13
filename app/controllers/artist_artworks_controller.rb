@@ -1,7 +1,12 @@
 class ArtistArtworksController < ApplicationController
   def index
-    @artist = Artist.find(params[:artist_id])
-    @artworks = @artist.artworks
+    if params.has_key?(:sorting)
+      @artist = Artist.find(params[:artist_id])
+      @artworks = @artist.artworks.sort_alphabetically
+    else
+      @artist = Artist.find(params[:artist_id])
+      @artworks = @artist.artworks
+    end
   end
 
   def new
