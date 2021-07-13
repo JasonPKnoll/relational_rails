@@ -92,7 +92,7 @@ RSpec.describe 'the beer index page' do
     expect(page).to_not have_content(beer1.name)
   end
 
-  it 'links to the edit page from beers index page, updates beer, and redirects to the beer show page' do
+  it 'has links to the update page for every beer' do
     # user story 18
     brewery = Brewery.create!(name: "Goldspot Brewing Co",
                               location: "Denver, CO",
@@ -112,24 +112,21 @@ RSpec.describe 'the beer index page' do
                                 ibu: 20,
                                 non_alcoholic: true
                                 )
-    visit "/beers"
+
+    visit '/beers'
 
     expect(page).to have_link("Update #{beer1.name}")
 
     click_link("Update #{beer1.name}")
 
-    fill_in('name', with: 'Big Gay IPA')
-    fill_in('style', with: 'American IPA')
-    fill_in('abv', with: 5.0)
-    fill_in('ibu', with: 50)
-    page.choose('non_alcoholic', with: false)
+    expect(current_path).to eq("/beers/#{beer1.id}/edit")
 
-    click_button('Update Beer')
+    visit '/beers'
 
-    expect(current_path).to eq("/beers/#{beer1.id}")
-    expect(page).to have_content("Style: American IPA")
-    expect(page).to have_content("ABV(%): 5.0")
-    expect(page).to have_content("IBU: 50")
-    expect(page).to have_content("Non Alcoholic: false")
+    expect(page).to have_link("Update #{beer2.name}")
+
+    click_link("Update #{beer2.name}")
+
+    expect(current_path).to eq("/beers/#{beer2.id}/edit")
   end
 end

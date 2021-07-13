@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'beers edit page' do
-  it 'can edit the beer' do
+  it 'can update the beer' do
     brewery = Brewery.create!(name: "Goldspot Brewing Co",
                               location: "Denver, CO",
                               year_established: 2016,
@@ -43,7 +43,7 @@ RSpec.describe 'beers edit page' do
                                 ibu: 0,
                                 non_alcoholic: true
                                 )
-                                
+
     visit "/beers/#{beer.id}/edit"
 
     expect(page).to have_link("Brewery Index")

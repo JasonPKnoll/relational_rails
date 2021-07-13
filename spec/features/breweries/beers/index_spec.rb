@@ -63,6 +63,35 @@ RSpec.describe "Brewery's beers index page" do
     expect(page).to have_link("Artwork Index")
   end
 
+  it 'links to the the create beer page, creates new beer, and redirects to the brewerys beer index page' do
+    #user story 13
+    brewery1 = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+
+    visit "/breweries/#{brewery1.id}/beers"
+
+    click_link("Create Beer")
+
+    expect(current_path).to eq("/breweries/#{brewery1.id}/beers/new")
+
+    fill_in('name', with: 'Two Hearted Ale')
+    fill_in('style', with: 'American IPA')
+    fill_in('abv', with: 7.0)
+    fill_in('ibu', with: 55)
+    page.choose('non_alcoholic', with: false)
+    click_button('Create Beer')
+
+    expect(current_path).to eq("/breweries/#{brewery1.id}/beers")
+    expect(page).to have_content('Two Hearted Ale')
+    expect(page).to have_content('Style: American IPA')
+    expect(page).to have_content('ABV(%): 7.0')
+    expect(page).to have_content('IBU: 55')
+    expect(page).to have_content('Non Alcoholic: false')
+  end
+
   it 'has a link that sorts page by alphabetical order' do
     #user story 16
     brewery1 = Brewery.create!(name: "Bells Brewery",

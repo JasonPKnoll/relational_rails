@@ -89,4 +89,33 @@ RSpec.describe 'the brewery index page' do
     expect(current_path).to eq('/breweries')
     expect(page).to have_content('New Glarus Brewing')
   end
+
+  it 'has a link to update brewery for every brewery on page' do
+    #user story 17
+    brewery1 = Brewery.create!(name: "Sierra Nevada Brewing Co",
+                               location: "Chico, CA",
+                               year_established: 1980,
+                               multiple_brewhouses: true
+                             )
+    brewery2 = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+    visit '/breweries'
+  
+    expect(page).to have_link("Update #{brewery1.name}")
+
+    click_link("Update #{brewery1.name}")
+
+    expect(current_path).to eq("/breweries/#{brewery1.id}/edit")
+
+    visit '/breweries'
+
+    expect(page).to have_link("Update #{brewery2.name}")
+
+    click_link("Update #{brewery2.name}")
+
+    expect(current_path).to eq("/breweries/#{brewery2.id}/edit")
+  end
 end
