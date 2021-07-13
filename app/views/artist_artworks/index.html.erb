@@ -7,4 +7,5 @@
 
 <% @artworks.each do |artwork| %>
   <p><%= artwork.name %></p>
+<a href="/artworks/<%= artwork.id  %>/edit">Edit <%= artwork.name %></a><br><br>
 <% end %>
