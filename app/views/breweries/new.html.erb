@@ -1,10 +1,14 @@
-<form action="/breweries" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <p>Enter a new brewery:</p>
-  <input type="text" name="brewery[name]"/><br/>
-  <p>Location:</p>
-  <input type="text" name="brewery[location]"/><br/>
-  <label for="year_established">What year was the brewery established:</label>
-  <input type="number" id="year_established" name="brewery[year_established]" min="1040" max="2021"><br/>
-  <input type="submit"/>
-</form>
+<%= form_with url: '/breweries', method: :post, local: true do |form| %>
+  <%= form.label :name, 'Name:' %>
+  <%= form.text_field :name %>
+  <%= form.label :location, 'Location:' %>
+  <%= form.text_field :location %>
+  <%= form.label :year_established, 'Year Established:' %>
+  <%= form.number_field :year_established %>
+  <%= form.label :multiple_brewhouses, 'Multiple Brewhouses: True' %>
+  <%= form.radio_button :multiple_brewhouses, 'true' %>
+  <%= form.label :multiple_brewhouses, 'False' %>
+  <%= form.radio_button :multiple_brewhouses, 'false' %>
+
+  <%= form.submit "Create Brewery" %>
+<% end %>
