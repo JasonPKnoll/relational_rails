@@ -16,6 +16,11 @@ RSpec.describe 'Artist artworks index' do
                                         art_type: "3D Base Model",
                                         price: 45,
                                         for_sale: true)
+
+    @abc = @povi.artworks.create!(name: "ABC",
+                                        art_type: "3D Base Model",
+                                        price: 10,
+                                        for_sale: true)
   end
 
   it 'displays specified artwork of that artist based on their id' do
@@ -70,5 +75,24 @@ RSpec.describe 'Artist artworks index' do
 
     expect(current_path).to eq("/artists/#{@povi.id}/artworks")
     expect(page).to have_content("Povichi V2")
+  end
+
+  it 'has all artist artworks in alphabetical order' do
+
+    # User Story 16, Sort Artist's Artwork in Alphabetical Order by name (x2)
+    # As a visitor
+    # When I visit the Artist's artworks Index Page
+    # Then I see a link to sort artworks in alphabetical order
+    # When I click on the link
+    # I'm taken back to the Artist's artworks Index Page where I see all of the parent's children in alphabetical order
+
+    visit "artists/#{@povi.id}/artworks"
+
+    expect("Povichi").to appear_before("ABC")
+
+    click_link "Sort in Alphabetical Order"
+
+    expect("ABC").to appear_before("Kemonomimi")
+    expect("Kemonomimi").to appear_before("Povichi")
   end
 end
