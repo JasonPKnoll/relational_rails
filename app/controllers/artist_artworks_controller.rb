@@ -5,6 +5,7 @@ class ArtistArtworksController < ApplicationController
   end
 
   def new
+    @artist = Artist.find(params[:artist_id])
   end
 
   def create

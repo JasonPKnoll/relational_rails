@@ -12,4 +12,4 @@
 
 <p>Updated At: <%= @artwork.updated_at %></p>
 
-<a href="/artworks/<%= @artwork.id %>/edit"><Edit</a>
+<a href="/artworks/<%= @artwork.id %>/edit"><%= button_to "Update #{@artwork.name}", "/artworks/#{@artwork.id}/edit", method: :get %></a>
