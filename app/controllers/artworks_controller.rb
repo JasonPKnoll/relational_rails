@@ -7,14 +7,18 @@ class ArtworksController < ApplicationController
   end
 
   def create
-    artwork = Artwork.new(artwork_params)
+    @artwork = Artwork.new(artwork_params)
 
-      artwork.save
+    artwork.save
 
-      redirect_to "/artists/#{@artist.id}"
+    redirect_to "/artists/#{@artist.id}"
   end
 
   def show
+    @artwork = Artwork.find(params[:id])
+  end
+
+  def edit
     @artwork = Artwork.find(params[:id])
   end
 

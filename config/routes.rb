@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get '/artworks/:id', to: 'artworks#show'
   get '/artworks/:id/edit', to: 'artworks#edit'
-  patch '/artworks/:id/', to: 'artworks#update'
+  patch '/artworks/:id/edit', to: 'artworks#update'
 
   delete '/artworks/:id', to: 'artworks#destroy'
 
