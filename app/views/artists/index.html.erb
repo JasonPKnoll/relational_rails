@@ -4,7 +4,7 @@
 
 <% @artists.each do |artist| %>
   <h3>Artist Name: <a href="/artists/<%= artist.id %>"><%= artist.name %></a></h3>
-  <a href="/artists/<%= artist.id %>/edit"><%= button_to "Edit #{artist.name}", url: "/artists/#{artist.id}/edit", method: :get %></a>
+  <a href="/artists/<%= artist.id %>/edit"><%= button_to "Edit #{artist.name}", "/artists/#{artist.id}/edit", method: :get %></a>
   <form action="/artists/<%= artist.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="DELETE">
