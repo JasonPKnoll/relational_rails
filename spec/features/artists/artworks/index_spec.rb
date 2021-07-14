@@ -131,4 +131,21 @@ RSpec.describe 'Artist artworks index' do
     expect(current_path).to eq("/artworks/#{artwork.id}")
     expect(page).to have_content("Povichi V2.1")
   end
+
+  it 'displays records over given threshold' do
+    # User Story 21, Display Records Over a Given Threshold (x2)
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # I see a form that allows me to input a number value
+    # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+    # Then I am brought back to the current index page with only the records that meet that threshold shown.
+    visit "artists/#{@povi.id}/artworks"
+    fill_in "artworks above", with: 35
+
+    click_button "Submit"
+
+    expect(page).to_not have_content("ABC")
+    expect(page).to_not have_content("Povichi")
+    expect(page).to have_content("Kemonomimi")
+  end
 end
