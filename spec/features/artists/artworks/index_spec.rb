@@ -135,12 +135,13 @@ RSpec.describe 'Artist artworks index' do
   it 'displays records over given threshold' do
     # User Story 21, Display Records Over a Given Threshold (x2)
     # As a visitor
-    # When I visit the Parent's children Index Page
+    # When I visit the Artist's artworks Index Page
     # I see a form that allows me to input a number value
     # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
     # Then I am brought back to the current index page with only the records that meet that threshold shown.
     visit "artists/#{@povi.id}/artworks"
-    fill_in "artworks above", with: 35
+    save_and_open_page
+    fill_in "Artworks Priced Above: ", with: 35
 
     click_button "Submit"
 

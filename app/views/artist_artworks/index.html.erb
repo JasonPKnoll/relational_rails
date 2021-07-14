@@ -1,9 +1,14 @@
 <h1>Artworks</h1>
 
-<!-- <h3><a href="/artists//artworks/new">Create Artwork</a></h3> -->
 <%= link_to 'Create Artwork', "/artists/#{@artist.id}/artworks/new" %>
-<br>
+<br><br>
 <%= link_to 'Sort in Alphabetical Order', "/artists/#{@artist.id}/artworks?sorting" %>
+<br><br>
+
+<form action="/artworks" method="GET">
+  <p>Artworks Priced Above: <input type="text" name="price_above" ></p>
+  <input type="submit" value="Submit">
+</form>
 
 <% @artworks.each do |artwork| %>
   <p><%= artwork.name %></p>

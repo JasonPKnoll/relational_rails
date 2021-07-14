@@ -34,16 +34,16 @@ RSpec.describe 'the artworks index page' do
     # => When I visit any page
     # => I see a link at the top of the page that takes me to artworks index
     visit "/" # welcome page
-    expect(page).to have_link("Artworks Index")
+    expect(page).to have_link("Artwork Index")
 
     visit "/artworks"
-    expect(page).to have_link("Artworks Index")
+    expect(page).to have_link("Artwork Index")
 
     visit "/artists"
-    expect(page).to have_link("Artworks Index")
+    expect(page).to have_link("Artwork Index")
 
     visit "/easteregg"
-    expect(page).to have_link("Artworks Index")
+    expect(page).to have_link("Artwork Index")
   end
 
   it 'only shows records where for sale is true' do
