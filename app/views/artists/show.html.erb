@@ -17,5 +17,4 @@
 
 <p>Updated At: <%= @artist.updated_at %></p>
 
-
 <a href="/artists/<%= @artist.id %>/edit"><%= button_to "Update #{@artist.name}", "/artists/#{@artist.id}/edit", method: :get %></a>

@@ -4,11 +4,10 @@
 
 <% @artists.each do |artist| %>
   <h3>Artist Name: <a href="/artists/<%= artist.id %>"><%= artist.name %></a></h3>
-  <a href="/artists/<%= artist.id %>/edit"><%= link_to "Edit #{artist.name}", "/artists/#{artist.id}/edit", method: :get %></a>
+  <h4><a href="/artists/<%= artist.id %>/edit"><%= link_to "Edit #{artist.name}", "/artists/#{artist.id}/edit", method: :get %></a></h4>
+  <%= link_to "Delete #{artist.name}", "/artists/#{artist.id}", method: "delete" %>
   <form action="/artists/<%= artist.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="DELETE">
-    <br>
-    <input type="submit" value="Delete <%= artist.name %>"/>
   </form>
 <% end %>

@@ -50,16 +50,16 @@ RSpec.describe 'the artists index page' do
     # => When I visit any page
     # => I see a link at the top of the page that takes me to artists index
     visit "/" # welcome page
-    expect(page).to have_link("Artists Index")
+    expect(page).to have_link("Artist Index")
 
     visit "/artworks"
-    expect(page).to have_link("Artists Index")
+    expect(page).to have_link("Artist Index")
 
     visit "/artists"
-    expect(page).to have_link("Artists Index")
+    expect(page).to have_link("Artist Index")
 
     visit "/easteregg"
-    expect(page).to have_link("Artists Index")
+    expect(page).to have_link("Artist Index")
   end
 
   describe 'can create a new artist' do
@@ -124,5 +124,24 @@ RSpec.describe 'the artists index page' do
 
     expect(current_path).to eq("/artists/#{megan.id}")
     expect(page).to have_content("Megan")
+  end
+
+  it "can delete from index" do
+    # User Story 22, Artist Delete From Artist Index Page (x1)
+    # As a visitor
+    # When I visit the artist index page
+    # Next to every artist, I see a link to delete that artist
+    # When I click the link
+    # I am returned to the Artist Index Page where I no longer see that artist
+
+    megan = Artist.create!(name: "Megan",
+                          description: "3D artists",
+                          years_experience: 2,
+                          comissions_open: true)
+
+    visit "/artists/"
+    click_link "Delete Megan"
+
+    expect(page).to_not have_content("Megan")
   end
 end

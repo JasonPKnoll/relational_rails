@@ -3,6 +3,9 @@ class ArtistArtworksController < ApplicationController
     if params.has_key?(:sorting)
       @artist = Artist.find(params[:artist_id])
       @artworks = @artist.artworks.sort_alphabetically
+    elsif params.has_key?(:above_price)
+      @artist = Artist.find(params[:artist_id])
+      @artworks = @artist.artworks.where("price >= ?", params[:above_price])
     else
       @artist = Artist.find(params[:artist_id])
       @artworks = @artist.artworks
@@ -18,17 +21,6 @@ class ArtistArtworksController < ApplicationController
     artwork = @artist.artworks.create(artwork_params)
     artwork.save
     redirect_to "/artists/#{@artist.id}/artworks"
-  end
-
-  def update
-    @artist.artworks.create(artwork_params)
-
-    redirect_to "/artworks/#{@artist.id}/artworks"
-  end
-
-  def destroy
-    Artwork.destroy(params[:id])
-    redirect_to '/artworks'
   end
 
   private

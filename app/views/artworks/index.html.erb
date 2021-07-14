@@ -9,9 +9,5 @@
   <p>Updated At: <%= artwork.updated_at %></p>
 
   <a href="/artworks/<%= artwork.id  %>/edit">Edit <%= artwork.name %></a><br><br>
-  <form action="/artworks/<%= artwork.id %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="delete"/>
-  </form>
+  <%= link_to "Delete #{artwork.name}", "/artworks/#{artwork.id}", method: "delete" %>
 <% end %>

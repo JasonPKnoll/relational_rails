@@ -16,6 +16,11 @@ RSpec.describe 'the artworks show page' do
                                       art_type: "3D Base Model",
                                       price: 45,
                                       for_sale: true)
+
+    @artwork_3 = @povi.artworks.create!(name: "Bees",
+                                      art_type: "2D digital art",
+                                      price: 15,
+                                      for_sale: true)
   end
 
   # => Story 4
@@ -66,5 +71,27 @@ RSpec.describe 'the artworks show page' do
 
     expect(current_path).to eq("/artworks/#{@artwork.id}")
     expect(page).to have_content("Povichi V2")
+  end
+
+  it 'can delete artworks' do
+    # User Story 20, Artwork Delete (x2)
+    # As a visitor
+    # When I visit a artwork show page
+    # Then I see a link to delete the artwork "Delete Artwork"
+    # When I click the link
+    # Then a 'DELETE' request is sent to '/artwork/:id',
+    # the artwork is deleted,
+    # and I am redirected to the artwork index page where I no longer see this artwork
+
+
+    visit "/artworks/"
+
+    click_link "Bees"
+    expect(current_path).to eq("/artworks/#{@artwork_3.id}")
+
+    click_link "Delete Bees"
+    expect(current_path).to eq("/artworks")
+    expect(page).to_not have_content("Bees")
+
   end
 end
