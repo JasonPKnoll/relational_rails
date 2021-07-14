@@ -3,17 +3,6 @@ class ArtworksController < ApplicationController
     @artworks = Artwork.all.where(for_sale: true)
   end
 
-  def new
-  end
-
-  def create
-    @artwork = Artwork.new(artwork_params)
-
-    artwork.save
-
-    redirect_to "/artists/#{@artist.id}"
-  end
-
   def show
     @artwork = Artwork.find(params[:id])
   end

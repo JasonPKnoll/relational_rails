@@ -17,9 +17,6 @@ Rails.application.routes.draw do
   # ARTWORKS -------------------------
   get '/artworks', to: 'artworks#index'
 
-  get '/artworks/new', to: 'artworks#new'
-  post '/artworks', to: 'artworks#create'
-
   get '/artworks/:id', to: 'artworks#show'
   get '/artworks/:id/edit', to: 'artworks#edit'
   patch '/artworks/:id/edit', to: 'artworks#update'
