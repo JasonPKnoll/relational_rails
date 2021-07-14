@@ -126,7 +126,6 @@ RSpec.describe 'the artworks index page' do
                                   for_sale: true)
 
     visit "/artworks"
-    save_and_open_page
     click_link "Delete Bees"
 
     expect(page).to_not have_content("Bees")

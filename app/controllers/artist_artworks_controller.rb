@@ -3,6 +3,9 @@ class ArtistArtworksController < ApplicationController
     if params.has_key?(:sorting)
       @artist = Artist.find(params[:artist_id])
       @artworks = @artist.artworks.sort_alphabetically
+    elsif params.has_key?(:above_price)
+      @artist = Artist.find(params[:artist_id])
+      @artworks = @artist.artworks.where("price >= ?", params[:above_price])
     else
       @artist = Artist.find(params[:artist_id])
       @artworks = @artist.artworks

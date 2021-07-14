@@ -1,14 +1,15 @@
-<h1>Artworks</h1>
+<h1>Artworks by <%= @artist.name %></h1>
 
 <%= link_to 'Create Artwork', "/artists/#{@artist.id}/artworks/new" %>
 <br><br>
 <%= link_to 'Sort in Alphabetical Order', "/artists/#{@artist.id}/artworks?sorting" %>
 <br><br>
 
-<form action="/artworks" method="GET">
-  <p>Artworks Priced Above: <input type="text" name="price_above" ></p>
-  <input type="submit" value="Submit">
-</form>
+<%= form_with url: "/artists/#{@artist.id}/artworks", method: :get, local: true do |form| %>
+  <%= form.label :above_price, "All Artworks Above the Cost of: " %>
+  <%= form.number_field :above_price, step: 5 %>
+  <%= form.submit "Submit" %>
+<% end %>
 
 <% @artworks.each do |artwork| %>
   <p><%= artwork.name %></p>

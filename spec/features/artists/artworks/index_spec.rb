@@ -140,8 +140,9 @@ RSpec.describe 'Artist artworks index' do
     # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
     # Then I am brought back to the current index page with only the records that meet that threshold shown.
     visit "artists/#{@povi.id}/artworks"
-    
-    fill_in "Artworks Priced Above: ", with: 35
+    save_and_open_page
+
+    fill_in "All Artworks Above the Cost of:", with: 35
 
     click_button "Submit"
 
