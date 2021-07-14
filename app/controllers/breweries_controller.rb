@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
   def index
-    @breweries = Brewery.all.order('breweries.created_at DESC')
+    @breweries = Brewery.newest_first
   end
 
   def new
@@ -26,12 +26,13 @@ class BreweriesController < ApplicationController
     brewery.save
     redirect_to "/breweries/#{brewery.id}"
   end
-  
+
   def destroy
     Brewery.destroy(params[:id])
     redirect_to "/breweries"
   end
 
+  private
   def brewery_params
     params.permit(:name, :location, :year_established, :multiple_brewhouses)
   end

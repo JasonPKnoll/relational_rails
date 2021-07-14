@@ -192,8 +192,8 @@ RSpec.describe "Brewery's beers index page" do
 
   visit "/breweries/#{brewery.id}/beers"
 
-  fill_in('search_ibus', with: 40)
-  click_button("Only return records with more than number of ibus")
+  fill_in('search', with: 40)
+  click_button("Only return records with more than search number of ibus")
 
   expect(current_path).to eq("/breweries/#{brewery.id}/beers")
   expect(page).to have_content(beer1.name)

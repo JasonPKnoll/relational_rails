@@ -1,13 +1,11 @@
 class BreweryBeersController < ApplicationController
   def index
+    @brewery = Brewery.find(params[:brewery_id])
     if params.has_key?(:sort)
-      @brewery = Brewery.find(params[:brewery_id])
       @beers = @brewery.beers.sort_beers_by_name
-    elsif params.has_key?(:search_ibus)
-      @brewery = Brewery.find(params[:brewery_id])
-      @beers = @brewery.beers.where("ibu > ?", params[:search_ibus])
+    elsif params.has_key?(:search)
+      @beers = @brewery.beers.where("ibu > ?", params[:search])
     else
-      @brewery = Brewery.find(params[:brewery_id])
       @beers = @brewery.beers
     end
   end
@@ -23,6 +21,7 @@ class BreweryBeersController < ApplicationController
     redirect_to "/breweries/#{@brewery.id}/beers"
   end
 
+  private
   def beer_params
     params.permit(:name, :style, :abv, :ibu, :non_alcoholic)
   end

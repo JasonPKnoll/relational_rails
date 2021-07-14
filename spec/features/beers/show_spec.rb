@@ -30,7 +30,7 @@ RSpec.describe 'the beers show page' do
     expect(page).to have_content("Non Alcoholic: #{beer.non_alcoholic}")
   end
 
-  xit 'displays the name of brewery for the beer' do
+  it 'displays the name of brewery for the beer' do
     brewery = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
