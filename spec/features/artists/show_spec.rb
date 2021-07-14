@@ -55,4 +55,43 @@ RSpec.describe 'the artists show page' do
 
     expect(page).to have_content("Total works of art for Povi: 2")
   end
+
+  it 'can delete Artist' do
+    # User Story 19, Artist Delete (x2)
+    # As a visitor
+    # When I visit a artist show page
+    # Then I see a link to delete the artist
+    # When I click the link "Delete Artist"
+    # Then a 'DELETE' request is sent to '/artists/:id',
+    # the artist is deleted, and all child records are deleted
+    # and I am redirected to the artist index page where I no longer see this artist
+
+    megan = Artist.create!(name: "Megan",
+                          description: "From scratch avatar creator",
+                          years_experience: 2,
+                          comissions_open: true)
+
+    artwork = megan.artworks.create!(name: "Hearts",
+                                    art_type: "2D digital art",
+                                    price: 32,
+                                    for_sale: true)
+
+    artwork_2 = megan.artworks.create!(name: "Megonomimi",
+                                      art_type: "3D Base Model",
+                                      price: 45,
+                                      for_sale: true)
+
+    visit "/artists/"
+
+    expect(page).to have_content("Megan")
+
+    click_link "Delete Megan"
+
+    expect(page).to_not have_content("Megan")
+
+    visit "/artworks/"
+
+    expect(page).to_not have_content("Hearts")
+    expect(page).to_not have_content("Megonomimi")
+  end
 end
