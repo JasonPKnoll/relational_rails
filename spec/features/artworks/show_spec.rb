@@ -89,9 +89,9 @@ RSpec.describe 'the artworks show page' do
     click_link "Bees"
     expect(current_path).to eq("/artworks/#{@artwork_3.id}")
 
-    click_link "Delete Artwork"
-    expect(current_path).to eq("/artworks/")
+    click_link "Delete Bees"
+    expect(current_path).to eq("/artworks")
     expect(page).to_not have_content("Bees")
-    
+
   end
 end
