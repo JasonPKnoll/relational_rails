@@ -103,7 +103,7 @@ RSpec.describe 'the brewery index page' do
                               multiple_brewhouses: true
                             )
     visit '/breweries'
-  
+
     expect(page).to have_link("Update #{brewery1.name}")
 
     click_link("Update #{brewery1.name}")
@@ -117,5 +117,37 @@ RSpec.describe 'the brewery index page' do
     click_link("Update #{brewery2.name}")
 
     expect(current_path).to eq("/breweries/#{brewery2.id}/edit")
+  end
+
+  it 'has a link to delete brewery for every brewery on page' do
+    #user story 22
+    brewery = Brewery.create(name: "Diametric Brewing Co",
+                             location: "Lee's Summit, MO",
+                             year_established: 2017,
+                             multiple_brewhouses: false
+                           )
+    brewery2 = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+
+    visit "/breweries"
+
+    expect(page).to have_link("Delete #{brewery.name}")
+
+    click_link("Delete #{brewery.name}")
+
+    expect(current_path).to eq("/breweries")
+    expect(page).to_not have_content(brewery.name)
+
+    visit "/breweries"
+
+    expect(page).to have_link("Delete #{brewery2.name}")
+
+    click_link("Delete #{brewery2.name}")
+
+    expect(current_path).to eq("/breweries")
+    expect(page).to_not have_content(brewery2.name)
   end
 end

@@ -121,4 +121,22 @@ RSpec.describe 'the brewery show page' do
     expect(page).to have_content("Year established: 1985")
     expect(page).to have_content("Multiple Brewhouses: true")
   end
+
+  it 'can use a button to delete a brewery' do
+    #user story 19
+    brewery = Brewery.create(name: "Diametric Brewing Co",
+                             location: "Lee's Summit, MO",
+                             year_established: 2017,
+                             multiple_brewhouses: false
+                           )
+
+    visit "/breweries/#{brewery.id}"
+
+    expect(page).to have_link("Delete #{brewery.name}")
+
+    click_link("Delete #{brewery.name}")
+
+    expect(current_path).to eq("/breweries")
+    expect(page).to_not have_content(brewery.name)
+  end
 end

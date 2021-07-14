@@ -30,7 +30,7 @@ RSpec.describe 'the beers show page' do
     expect(page).to have_content("Non Alcoholic: #{beer.non_alcoholic}")
   end
 
-  xit 'displays the name of brewery for the beer' do
+  it 'displays the name of brewery for the beer' do
     brewery = Brewery.create!(name: "Bells Brewery",
                               location: "Kalamazoo, MI",
                               year_established: 1985,
@@ -102,5 +102,27 @@ RSpec.describe 'the beers show page' do
     expect(page).to have_content("ABV(%): 5.0")
     expect(page).to have_content("IBU: 50")
     expect(page).to have_content("Non Alcoholic: false")
+  end
+
+  it 'has a link to delete beer, deletes beer, and redirects to beers index page' do
+    #user story 20
+    brewery = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+    beer = brewery.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55,
+                        non_alcoholic: true
+                      )
+
+    visit "/beers/#{beer.id}"
+
+    click_link("Delete #{beer.name}")
+
+    expect(current_path).to eq("/beers")
+    expect(page).to_not have_content(beer.name)
   end
 end

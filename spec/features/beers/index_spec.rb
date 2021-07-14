@@ -129,4 +129,47 @@ RSpec.describe 'the beer index page' do
 
     expect(current_path).to eq("/beers/#{beer2.id}/edit")
   end
+
+  it 'has a link to delete beer next to every beer on page, can delete any beer, and redirects to beers index page' do
+    #user story 23 - part 1
+    brewery1 = Brewery.create!(name: "Bells Brewery",
+                              location: "Kalamazoo, MI",
+                              year_established: 1985,
+                              multiple_brewhouses: true
+                            )
+    beer1 = brewery1.beers.create!(name: "Two Hearted Ale",
+                        style: "American IPA",
+                        abv: 7.0,
+                        ibu: 55,
+                        non_alcoholic: true
+                      )
+
+    brewery2 = Brewery.create!(name: "Goldspot Brewing Co",
+                              location: "Denver, CO",
+                              year_established: 2016,
+                              multiple_brewhouses: false
+                            )
+
+    beer2 = brewery2.beers.create!(name: "Gay IPA",
+                                style: "IPA",
+                                abv: 0,
+                                ibu: 0,
+                                non_alcoholic: true
+                                )
+
+    visit "/beers"
+
+    expect(page).to have_link("Delete #{beer1.name}")
+
+    click_link("Delete #{beer1.name}")
+
+    expect(current_path).to eq("/beers")
+    expect(page).to_not have_content(beer1.name)
+    expect(page).to have_link("Delete #{beer2.name}")
+
+    click_link("Delete #{beer2.name}")
+
+    expect(current_path).to eq("/beers")
+    expect(page).to_not have_content(beer2.name)
+  end
 end
