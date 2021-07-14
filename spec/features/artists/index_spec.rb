@@ -134,7 +134,7 @@ RSpec.describe 'the artists index page' do
     # When I click the link
     # I am returned to the Artist Index Page where I no longer see that artist
 
-    megan = Artist.create!(name: "Meg",
+    megan = Artist.create!(name: "Megan",
                           description: "3D artists",
                           years_experience: 2,
                           comissions_open: true)

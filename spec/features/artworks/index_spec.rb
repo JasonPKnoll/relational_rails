@@ -77,7 +77,7 @@ RSpec.describe 'the artworks index page' do
     # User Story 18, Artwork Update From Artworks Index Page (x1)
     # As a visitor
     # When I visit the `artworks` index page or a Artist `artworks` index page
-    # Next to every child, I see a link to edit that child's info
+    # Next to every artwork, I see a link to edit that artwork's info
     # When I click the link
     # I should be taken to that `artworks` edit page where I can update its information just like in User Story 11
 
@@ -106,5 +106,29 @@ RSpec.describe 'the artworks index page' do
 
     expect(current_path).to eq("/artworks/#{artwork.id}")
     expect(page).to have_content("Povichi V2.1")
+  end
+
+  it "can delete from artworks index" do
+    # User Story 23, Artwork Delete From Artworks Index Page (x1)
+    # As a visitor
+    # When I visit the `/artworks/` index page or a parent `/artworks/` index page
+    # Next to every artwork, I see a link to delete that artwork
+    # When I click the link
+    # I should be taken to the `/artworks/` index page where I no longer see that artwork
+    povi = Artist.create!(name: "Povi",
+                          description: "From scratch avatar creator",
+                          years_experience: 10,
+                          comissions_open: false)
+
+    bees = povi.artworks.create!(name: "Bees",
+                                  art_type: "2D digital art",
+                                  price: 15,
+                                  for_sale: true)
+
+    visit "/artworks"
+    save_and_open_page
+    click_link "Delete Bees"
+
+    expect(page).to_not have_content("Bees")
   end
 end
