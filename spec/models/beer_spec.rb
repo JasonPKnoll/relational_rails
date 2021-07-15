@@ -120,6 +120,7 @@ RSpec.describe Beer do
 
 
       expect(Beer.search_by_ibus(40).length).to eq(1)
+      expect(Beer.search_by_ibus(40)).to eq([beer1])
     end
   end
 end
