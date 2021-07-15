@@ -1,14 +1,13 @@
-<%= form_with url: "/breweries/#{@brewery.id}", method: :patch, local: true do |form| %>
-  <%= form.label :name, 'Name:' %>
-  <%= form.text_field :name %>
-  <%= form.label :location, 'Location:' %>
-  <%= form.text_field :location %>
-  <%= form.label :year_established, 'Year Established:' %>
-  <%= form.number_field :year_established %>
-  <%= form.label :multiple_brewhouses, 'Multiple Brewhouses: True' %>
-  <%= form.radio_button :multiple_brewhouses, 'true' %>
-  <%= form.label :multiple_brewhouses, 'False' %>
-  <%= form.radio_button :multiple_brewhouses, 'false' %>
+<center><%= form_with url: "/breweries/#{@brewery.id}", method: :patch, local: true do |form| %>
+<h1>Update <%= @brewery.name %>:</h1>
+<%= form.label :name, 'Name:' %>
+<%= form.text_field :name, value: "#{@brewery.name}" %>
+<%= form.label :location, 'Location:' %>
+<%= form.text_field :location, value: "#{@brewery.location}" %>
+<%= form.label :year_established, 'Year Established:' %>
+<%= form.number_field :year_established, value: "#{@brewery.year_established}" %>
+<%= form.label :multiple_brewhouses, 'Are there multiple brewhouses?' %>
+<%= form.select :multiple_brewhouses, [["Yes", "true"], ["No", "false"]], selected: "#{@brewery.multiple_brewhouses}" %>
 
-  <%= form.submit "Update Brewery" %>
-<% end %>
+<%= form.submit "Update Brewery" %>
+<% end %></center>

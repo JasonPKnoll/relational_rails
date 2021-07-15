@@ -94,7 +94,7 @@ RSpec.describe 'the beers show page' do
     fill_in('style', with: 'American IPA')
     fill_in('abv', with: 5.0)
     fill_in('ibu', with: 50)
-    page.choose('non_alcoholic', with: false)
+    select('No', :from => "non_alcoholic")
     click_button('Update Beer')
 
     expect(current_path).to eq("/beers/#{beer.id}")

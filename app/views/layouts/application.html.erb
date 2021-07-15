@@ -9,11 +9,24 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <a href="/artists">Artist Index</a>
-    <a href="/artworks">Artwork Index</a>
-    <a href="/breweries">Brewery Index</a>
-    <a href="/beers">Beer Index</a>
-    <%= yield %>
-  </body>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Relational Rails</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="http://localhost:3000/">Home</a></li>
+      <li><a href="/artists">Artist Index</a>
+      <li><a href="/artworks">Artwork Index</a>
+      <li><a href="/breweries">Brewery Index</a>
+      <li><a href="/beers">Beer Index</a>
+    </ul>
+  </div>
+</nav>
+
+  <div class="container">
+    <body>
+      <%= yield %>
+    </body>
+  <div>
 </html>
