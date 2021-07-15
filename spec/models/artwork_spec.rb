@@ -22,6 +22,35 @@ RSpec.describe Artwork do
                                     art_type: "2D digital art",
                                     price: 15,
                                     for_sale: true)
+
     expect(Artwork.sort_alphabetically).to eq([bees, kemonomimi, povichi])
+  end
+
+  it 'can seach by price' do
+    povi = Artist.create!(name: "Povi",
+                          description: "From scratch avatar creator",
+                          years_experience: 10,
+                          comissions_open: false)
+
+    povichi = povi.artworks.create!(name: "Povichi",
+                                    art_type: "3D Base Model",
+                                    price: 32,
+                                    for_sale: true)
+
+    kemonomimi = povi.artworks.create!(name: "Kemonomimi",
+                                      art_type: "3D Base Model",
+                                      price: 45,
+                                      for_sale: true)
+
+    bees = povi.artworks.create!(name: "Bees",
+                                    art_type: "2D digital art",
+                                    price: 15,
+                                    for_sale: true)
+
+    number = 30
+    expect(povi.artworks.search_by_price(number).count).to eq(2)
+
+    number = 35
+    expect(povi.artworks.search_by_price(number).count).to eq(1)
   end
 end
