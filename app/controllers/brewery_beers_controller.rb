@@ -4,7 +4,7 @@ class BreweryBeersController < ApplicationController
     if params.has_key?(:sort)
       @beers = @brewery.beers.sort_beers_by_name
     elsif params.has_key?(:search)
-      @beers = @brewery.beers.where("ibu > ?", params[:search])
+      @beers = @brewery.beers.search_by_ibus(params[:search])
     else
       @beers = @brewery.beers
     end

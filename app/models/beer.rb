@@ -14,7 +14,7 @@ class Beer < ApplicationRecord
     where(non_alcoholic: true)
   end
 
-  # def self.search_by_ibus
-  #   where("ibu > ?", params[:search])
-  # end
+  def self.search_by_ibus(num)
+    where("ibu > ?", num)
+  end
 end

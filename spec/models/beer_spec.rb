@@ -4,7 +4,7 @@ RSpec.describe Beer do
   describe 'validations' do
     it {should validate_presence_of :name}
   end
-  
+
   describe 'relationships' do
     it {should belong_to :brewery}
   end
@@ -93,32 +93,33 @@ RSpec.describe Beer do
       expect(Beer.non_alcoholic_beers).to eq([beer2, beer3])
     end
 
-    # xit '.search_by_ibus' do
-    #   brewery = Brewery.create!(name: "Bells Brewery",
-    #                             location: "Kalamazoo, MI",
-    #                             year_established: 1985,
-    #                             multiple_brewhouses: true
-    #                           )
-    #   beer1 = brewery.beers.create!(name: "Two Hearted Ale",
-    #                       style: "American IPA",
-    #                       abv: 7.0,
-    #                       ibu: 55,
-    #                       non_alcoholic: true
-    #                     )
-    #   beer2 = brewery.beers.create!(name: "Oberon Ale",
-    #                       style: "American Pale Wheat",
-    #                       abv: 5.8,
-    #                       ibu: 0,
-    #                       non_alcoholic: false
-    #                     )
-    #   beer3 = brewery.beers.create!(name: "Pooltime Ale",
-    #                       style: "Wheat Beer",
-    #                       abv: 5.0,
-    #                       ibu: 0,
-    #                       non_alcoholic: false
-    #                     )
-    #
-    #   expect(Beer.search_by_ibus.length).to eq(1)
-    # end
+    it '.search_by_ibus' do
+      brewery = Brewery.create!(name: "Bells Brewery",
+                                location: "Kalamazoo, MI",
+                                year_established: 1985,
+                                multiple_brewhouses: true
+                              )
+      beer1 = brewery.beers.create!(name: "Two Hearted Ale",
+                          style: "American IPA",
+                          abv: 7.0,
+                          ibu: 55,
+                          non_alcoholic: true
+                        )
+      beer2 = brewery.beers.create!(name: "Oberon Ale",
+                          style: "American Pale Wheat",
+                          abv: 5.8,
+                          ibu: 0,
+                          non_alcoholic: false
+                        )
+      beer3 = brewery.beers.create!(name: "Pooltime Ale",
+                          style: "Wheat Beer",
+                          abv: 5.0,
+                          ibu: 0,
+                          non_alcoholic: false
+                        )
+
+
+      expect(Beer.search_by_ibus(40).length).to eq(1)
+    end
   end
 end
