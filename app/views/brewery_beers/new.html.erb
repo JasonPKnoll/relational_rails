@@ -1,16 +1,15 @@
-<%= form_with url: "/breweries/#{@brewery.id}/beers", method: :post, local: true do |form| %>
- <%= form.label :name, 'Name:' %>
- <%= form.text_field :name %>
- <%= form.label :style, 'Style:' %>
- <%= form.text_field :style %>
- <%= form.label :abv, 'ABV:' %>
- <%= form.number_field :abv %>
- <%= form.label :ibu, 'IBU(%):' %>
- <%= form.number_field :ibu %>
- <%= form.label :non_alcoholic, 'Non Alcohoic: True' %>
- <%= form.radio_button :non_alcoholic, 'true' %>
- <%= form.label :non_alcoholic, 'False' %>
- <%= form.radio_button :non_alcoholic, 'false' %>
+<center><%= form_with url: "/breweries/#{@brewery.id}/beers", method: :post, local: true do |form| %>
+<h1>Create New Beer:</h1>
+<%= form.label :name, 'Name:' %>
+<%= form.text_field :name %>
+<%= form.label :style, 'Style:' %>
+<%= form.text_field :style %>
+<%= form.label :abv, 'ABV:' %>
+<%= form.number_field :abv %>
+<%= form.label :ibu, 'IBU(%):' %>
+<%= form.number_field :ibu %>
+<%= form.label :non_alcoholic, "Is the beer non alcoholic?"%>
+<%= form.select :non_alcoholic, [["Yes", "true"], ["No", "false"]] %>
 
- <%= form.submit "Create Beer" %>
-<% end %>
+<%= form.submit "Create Beer" %>
+<% end %></center>

@@ -1,16 +1,15 @@
-<%= form_with url: "/beers/#{@beer.id}", method: :patch, local: true do |form| %>
+<center><%= form_with url: "/beers/#{@beer.id}", method: :patch, local: true do |form| %>
+<h1>Update <%= @beer.name %>:</h1>
 <%= form.label :name, 'Name:' %>
-<%= form.text_field :name %>
+<%= form.text_field :name, value: "#{@beer.name}" %>
 <%= form.label :style, 'Style:' %>
-<%= form.text_field :style %>
+<%= form.text_field :style, value: "#{@beer.style}" %>
 <%= form.label :abv, 'ABV:' %>
-<%= form.number_field :abv %>
+<%= form.number_field :abv, value: "#{@beer.abv}" %>
 <%= form.label :ibu, 'IBU(%):' %>
-<%= form.number_field :ibu %>
-<%= form.label :non_alcoholic, 'Non Alcohoic: True' %>
-<%= form.radio_button :non_alcoholic, 'true' %>
-<%= form.label :non_alcoholic, 'False' %>
-<%= form.radio_button :non_alcoholic, 'false' %>
+<%= form.number_field :ibu, value: "#{@beer.ibu}" %>
+<%= form.label :non_alcoholic, "Is the beer non alcoholic?"%>
+<%= form.select :non_alcoholic, [["Yes", "true"], ["No", "false"]], selected: "#{@beer.non_alcoholic}" %>
 
 <%= form.submit "Update Beer" %>
-<% end %>
+<% end %></center>

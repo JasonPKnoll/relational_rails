@@ -81,7 +81,7 @@ RSpec.describe "Brewery's beers index page" do
     fill_in('style', with: 'American IPA')
     fill_in('abv', with: 7.0)
     fill_in('ibu', with: 55)
-    page.choose('non_alcoholic', with: false)
+    select('No', :from => "non_alcoholic")
     click_button('Create Beer')
 
     expect(current_path).to eq("/breweries/#{brewery1.id}/beers")

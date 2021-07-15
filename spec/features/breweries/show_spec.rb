@@ -112,7 +112,7 @@ RSpec.describe 'the brewery show page' do
     fill_in('name', with: 'Bells Brewery')
     fill_in('location', with: 'Kalamazoo, MI')
     fill_in('year_established', with: 1985)
-    page.choose('multiple_brewhouses', with: true)
+    select('Yes', :from => "multiple_brewhouses")
     click_button('Update Brewery')
 
     expect(current_path).to eq("/breweries/#{brewery.id}")

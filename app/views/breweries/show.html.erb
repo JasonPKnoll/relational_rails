@@ -6,6 +6,10 @@
 
 <p>Multiple Brewhouses: <%= @brewery.multiple_brewhouses %></p>
 
+<p>Created at: <%= @brewery.created_at %></p>
+
+<p>Updated at: <%= @brewery.updated_at %></p>
+
 <p>Number of beers: <%= @brewery.beers.beer_count %></p>
 
 <a href="/breweries/<%= @brewery.id %>/beers">Beer List</a>
